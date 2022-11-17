@@ -17,6 +17,9 @@ import Icons from 'react-native-vector-icons/FontAwesome5';
 import {UIButton} from '../compoments';
 import {isValiEmail, isValiPassword} from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 function Signin(props) {
   //state for validating
   const [errorEmail, seterrorEmail] = useState('');
@@ -41,7 +44,16 @@ function Signin(props) {
       setKeyboardIsShown(false);
     });
   });
+
+  //currentuser
+  const [email1, setemail1] = useState('anhtu@gmail.com');
+  const [password1, setpassword1] = useState('12345');
+
+  const checkuser = (email, email1, password, password1) => {
+    return email == email1 && password == password1;
+  };
   const {navigation} = props;
+
   return (
     <View
       style={{
@@ -202,7 +214,13 @@ function Signin(props) {
             <TouchableOpacity
               disabled={isValidationOK() == false}
               onPress={() => {
-                alert(`Email = ${email},password = ${password}`);
+                AsyncStorage.setItem('username', email);
+                AsyncStorage.setItem('password', password);
+
+                {
+                  checkuser(email, email1, password, password1) == true &&
+                    navigation.navigate('Homescreen');
+                }
               }}
               title="LOGIN"
               style={{

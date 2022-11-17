@@ -35,6 +35,7 @@ function Register(props) {
   // state keyboard isShow
   const [KeyboardIsShown, setKeyboardIsShown] = useState(false);
 
+  const {navigation} = props;
   const isValidationOK = () =>
     email.length > 0 &&
     password.length > 0 &&
@@ -271,6 +272,20 @@ function Register(props) {
                   fontSize: fontsize.h5,
                 }}>
                 REGISTER
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Signin');
+              }}>
+              <Text
+                style={{
+                  padding: 10,
+                  colors: colors.primary,
+                  fontSize: fontsize.h5,
+                  alignSelf: 'center',
+                }}>
+                You have a Account?
               </Text>
             </TouchableOpacity>
           </View>

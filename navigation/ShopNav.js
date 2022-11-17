@@ -1,29 +1,50 @@
-import {NavigationContainer} from '@react-navigation/native';
+import * as React from 'react';
+import {View, Text, Button} from 'react-native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
-import DetailProduct from '../screens/DetailProduct';
-import Homescreen from '../screens/Homescreen';
-import {ProductList} from '../screens';
-import {Signin} from '../screens';
-import {Register} from '../screens';
-const Stack = createStackNavigator();
+import {Signin, Register, Homescreen, DetailProduct} from '../screens';
 
-function StackNavigator() {
+const Drawer = createDrawerNavigator();
+
+const MystackSignin = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Homescreen" component={Homescreen} />
-      <Stack.Screen name="DetailProduct" component={DetailProduct} />
-      <Stack.Screen name="ProductList" component={ProductList} />
+    <Stack.Navigator
+      initialRouterName="Signin"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="Signin" component={Signin} />
-      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="Homescreen" component={Homescreen} />
     </Stack.Navigator>
   );
-}
+};
 
-const MainNavigator = () => {
+const MystackRegister = () => {
   return (
-    <NavigationContainer>
-      <StackNavigator></StackNavigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouterName="Register"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="Homescreen" component={Homescreen} />
+    </Stack.Navigator>
   );
 };
-export default MainNavigator;
+
+const Stack = createStackNavigator();
+
+export default function MainNavigator() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        initialRouterName="Homescreen"
+        screenOptions={{headerShown: true}}>
+        <Drawer.Screen name="Homescreen" component={Homescreen} />
+        <Drawer.Screen name="DetailProduct" component={DetailProduct} />
+
+        {/* <Drawer.Screen name="Signin" component={Signin} />
+        <Drawer.Screen name="Register" component={Register} /> */}
+        <Drawer.Screen name="Signin" component={MystackSignin} />
+        <Drawer.Screen name="Register" component={MystackRegister} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+}

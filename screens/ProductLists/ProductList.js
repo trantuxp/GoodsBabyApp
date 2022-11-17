@@ -11,6 +11,7 @@ import {
   Keyboard,
   ScrollView,
   FlatList,
+  Button,
 } from 'react-native';
 
 import image from '../../constant/images';
@@ -19,8 +20,9 @@ import Icons from 'react-native-vector-icons/FontAwesome5';
 import ProductItem from './ProductItem';
 import Product2Item from './Product2Item';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 function ProductList(props) {
+  const {navigation} = props;
   const [products, setproducts] = useState([
     {
       name: 'Banh gao lut huu co 1',
@@ -102,18 +104,14 @@ function ProductList(props) {
         'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
     },
   ]);
+
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <View
-        style={{
-          flex: 10,
-          backgroundColor: colors.primary,
-        }}></View>
-      <View
+      {/* <View
         style={{
           flex: 10,
           flexDirection: 'row',
@@ -130,7 +128,7 @@ function ProductList(props) {
             borderRadius: 20,
             borderWidth: 1,
             borderColor: 'gray',
-            marginRight: 10,
+
             alginItem: 'center',
             justifyContent: 'center',
           }}
@@ -139,18 +137,18 @@ function ProductList(props) {
           style={{
             position: 'absolute',
             top: 5,
-            left: 340,
+            left: '85%',
           }}
           onPress={() => {
             alert('timkiem');
           }}>
           <Icons name="search" size={30} color="gray" />
         </TouchableOpacity>
-      </View>
+      </View> */}
       <View
         style={{
           top: 20,
-          flex: 80,
+          flex: 100,
         }}>
         <SafeAreaView>
           <FlatList
@@ -162,6 +160,7 @@ function ProductList(props) {
                 products={item}
                 key={item.name}
                 onPress={() => {
+                  navigation.navigate('DetailProduct');
                   alert(`you press item's name: ${item.name}`);
                 }}
               />
