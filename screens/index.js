@@ -5,6 +5,7 @@ import ProductItem from './ProductLists/ProductItem';
 import Product2Item from './ProductLists/Product2Item';
 import Homescreen from './Homescreen';
 import DetailProduct from './DetailProduct';
+import Cart from './Cart';
 export {
   Signin,
   Register,
@@ -13,4 +14,5 @@ export {
   Product2Item,
   Homescreen,
   DetailProduct,
+  Cart,
 };

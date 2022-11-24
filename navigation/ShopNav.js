@@ -3,7 +3,7 @@ import {View, Text, Button} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Signin, Register, Homescreen, DetailProduct} from '../screens';
+import {Signin, Register, Homescreen, DetailProduct, Cart} from '../screens';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,7 +39,7 @@ export default function MainNavigator() {
         screenOptions={{headerShown: true}}>
         <Drawer.Screen name="Homescreen" component={Homescreen} />
         <Drawer.Screen name="DetailProduct" component={DetailProduct} />
-
+        <Drawer.Screen name="Cart" component={Cart} />
         {/* <Drawer.Screen name="Signin" component={Signin} />
         <Drawer.Screen name="Register" component={Register} /> */}
         <Drawer.Screen name="Signin" component={MystackSignin} />

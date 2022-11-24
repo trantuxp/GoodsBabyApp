@@ -48,9 +48,9 @@ export default function Homescreen(props) {
         </View>
         {username != null && alert(`mail: ${username},password: ${password}`)}
         {/* <Text>Username: {username}</Text>
-        <Text>Password: {password}</Text>
-        <TouchableOpacity
-          style={{SIGNNIN
+        <Text>Password: {password}</Text>*/}
+        {/* <TouchableOpacity
+          style={{
             backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',

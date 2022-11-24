@@ -161,7 +161,7 @@ function ProductList(props) {
                 key={item.name}
                 onPress={() => {
                   navigation.navigate('DetailProduct');
-                  alert(`you press item's name: ${item.name}`);
+                  // alert(`you press item's name: ${item.name}`);
                 }}
               />
             )}
