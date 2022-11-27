@@ -1,11 +1,12 @@
 import {Text, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
+import {useRoute} from '@react-navigation/native';
 
 export default function Cart(props) {
-  const {name} = props;
+  const route = useRoute();
   return (
     <View>
-      <Text>{name} : kk</Text>
+      <Text>{route.params.name} : kk</Text>
     </View>
   );
 }

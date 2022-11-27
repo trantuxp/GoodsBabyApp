@@ -13,8 +13,9 @@ import React, {Component} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useNavigation, useRoute} from '@react-navigation/native';
 export default function DetailProduct(props) {
-  const {navigation} = props;
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{flexDirection: 'row', flex: 40}}>
@@ -51,7 +52,9 @@ export default function DetailProduct(props) {
             style={{backgroundColor: colors.primary}}
             title="Buy"
             onPress={() => {
-              navigation.navigate('Cart');
+              navigation.navigate('Cart', {
+                name: 'tu',
+              });
             }}></Button>
         </View>
       </View>

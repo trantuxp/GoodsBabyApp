@@ -46,7 +46,9 @@ export default function Homescreen(props) {
         <View style={{flex: 90}}>
           <ProductList navigation={navigation} />
         </View>
-        {username != null && alert(`mail: ${username},password: ${password}`)}
+        {username != null
+          ? alert(`mail: ${username},password: ${password}`)
+          : null}
         {/* <Text>Username: {username}</Text>
         <Text>Password: {password}</Text>*/}
         {/* <TouchableOpacity
