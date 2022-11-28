@@ -14,10 +14,20 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import Taskbar from './Taskbar';
+
 export default function DetailProduct(props) {
   const navigation = useNavigation();
+  const {name} = props;
+  console.log(name);
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <Taskbar navigation={navigation} title="DetailProduct" user="tu" />
+      </View>
       <View style={{flexDirection: 'row', flex: 40}}>
         <View style={{flex: 1}}>
           <Image
@@ -30,13 +40,13 @@ export default function DetailProduct(props) {
               alignSelf: 'center',
             }}
             source={{
-              uri: 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+              uri: '',
             }}
           />
         </View>
         <View style={{flex: 1, marginHorizontal: 10, marginVertical: 10}}>
-          <Text style={{marginVertical: 10}}>Bánh gạo lứt hữu cơ </Text>
-          <Text style={{marginVertical: 10}}>Giá: 72.000 đ</Text>
+          <Text style={{marginVertical: 10}}>{name} </Text>
+          <Text style={{marginVertical: 10}}>72.000 đ</Text>
           <TextInput
             keyboardType="numeric"
             style={{
@@ -58,7 +68,7 @@ export default function DetailProduct(props) {
             }}></Button>
         </View>
       </View>
-      <View style={{flex: 60, padding: 10}}>
+      <View style={{flex: 50, padding: 10}}>
         <KeyboardAwareScrollView>
           <View
             style={{

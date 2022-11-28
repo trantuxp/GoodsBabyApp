@@ -159,6 +159,7 @@ function ProductList(props) {
               <Product2Item
                 products={item}
                 key={item.name}
+                navigation={this.props.navigation}
                 onPress={() => {
                   navigation.navigate('DetailProduct');
                   // alert(`you press item's name: ${item.name}`);

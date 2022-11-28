@@ -22,6 +22,8 @@ import {
   isValiRePassword,
 } from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Taskbar from './Taskbar';
+
 function Register(props) {
   //state for validating
   const [errorEmail, seterrorEmail] = useState('');
@@ -60,9 +62,9 @@ function Register(props) {
       <View
         style={{
           flex: 10,
-          alignItems: 'center',
-          backgroundColor: colors.primary,
-        }}></View>
+        }}>
+        <Taskbar navigation={navigation} title="Register" user="tu" />
+      </View>
       <View
         style={{
           flex: 20,
@@ -80,7 +82,7 @@ function Register(props) {
           Already have an Account?
         </Text>
         <Image
-          source={image.account}
+          source={images.computer}
           style={{
             width: 100,
             height: 80,

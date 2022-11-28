@@ -17,7 +17,7 @@ import Icons from 'react-native-vector-icons/FontAwesome5';
 import {UIButton} from '../compoments';
 import {isValiEmail, isValiPassword} from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-
+import Taskbar from './Taskbar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Signin(props) {
@@ -63,11 +63,9 @@ function Signin(props) {
       <View
         style={{
           flex: 10,
-          flexDirection: 'row',
-          backgroundColor: colors.primary,
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}></View>
+        }}>
+        <Taskbar navigation={navigation} title="Signin" user="tu" />
+      </View>
       <View
         style={{
           flex: 20,
@@ -86,7 +84,7 @@ function Signin(props) {
           Already have an Account?
         </Text>
         <Image
-          source={image.account}
+          source={image.computer}
           style={{
             width: 120,
             height: 100,

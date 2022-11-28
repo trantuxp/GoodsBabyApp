@@ -6,6 +6,8 @@ import Product2Item from './ProductLists/Product2Item';
 import Homescreen from './Homescreen';
 import DetailProduct from './DetailProduct';
 import Cart from './Cart';
+import Taskbar from './Taskbar';
+import DrawerContent from './DrawerContent';
 export {
   Signin,
   Register,
@@ -15,4 +17,6 @@ export {
   Homescreen,
   DetailProduct,
   Cart,
+  Taskbar,
+  DrawerContent,
 };
