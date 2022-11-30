@@ -6,4 +6,6 @@ export default {
   menu: require('../assets/menu.png'),
   cart: require('../assets/cart.png'),
   back: require('../assets/back.png'),
+  star_corner: require('../assets/starcorner.png'),
+  starfilled: require('../assets/starfilled.png'),
 };

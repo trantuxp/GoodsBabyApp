@@ -144,11 +144,7 @@ export default function Homescreen(props) {
               keyExtractor={eachproducts => eachproducts.name}
               data={products}
               renderItem={({item}) => (
-                <Product2Item
-                  navigation={navigation}
-                  products={item}
-                  key={item.name}
-                />
+                <Product2Item navigation={navigation} products={item} />
               )}
             />
           </View>

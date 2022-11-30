@@ -12,6 +12,7 @@ import {
 import {images, colors, icons, fontsize} from '../../constant';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation, useRoute} from '@react-navigation/native';
+
 function _getColorFromStatus(amount) {
   /*
     if(status.toLowerCase().trim() == 'opening now') {
@@ -34,15 +35,19 @@ function _getColorFromStatus(amount) {
   //         (status.toLowerCase().trim() == 'comming soon' ? colors.warning : colors.success))
 }
 function Product2Item(props) {
-  let {name, amount, price, detail, imageUrl} = props.products; //destructuring an object
-  const navigation = useNavigation();
+  const {name, amount, price, detail, imageUrl} = props.products; //destructuring an object
+  const navigation = props.navigation;
 
   return (
     <View style={{width: '48%', marginHorizontal: '1%'}}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('DetailProduct', {
-            name: 'tu',
+            name: name,
+            amount: amount,
+            price: price,
+            detail: detail,
+            imageUrl: imageUrl,
           });
         }}
         style={{

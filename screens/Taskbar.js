@@ -131,7 +131,7 @@ export default function Taskbar(props) {
         }}>
         <TouchableOpacity
           onPress={() => {
-            alert('hi');
+            navigation.navigate('Cart');
           }}>
           <Image
             source={images.cart}

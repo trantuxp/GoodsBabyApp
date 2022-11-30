@@ -14,7 +14,6 @@ import {
 import image from '../constant/images';
 import {images, icons, fontsize, colors} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import {UIButton} from '../compoments';
 import {isValiEmail, isValiPassword} from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Taskbar from './Taskbar';

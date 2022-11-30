@@ -18,6 +18,7 @@ import {images, colors, fontsize} from '../constant';
 export default function DrawerContent(props) {
   const [products, setproducts] = useState([
     {
+      id: 1,
       name: 'Banh gao lut huu co 1',
       amount: '100',
       price: '72.000 ',
@@ -27,6 +28,7 @@ export default function DrawerContent(props) {
         'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
     },
     {
+      id: 2,
       name: 'Bot an dam',
       amount: '50',
       price: '165.000 ',
@@ -35,6 +37,7 @@ export default function DrawerContent(props) {
         'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/c/h/chao-heinz-bong-cai-sup-lo-pho-mai_1.jpg',
     },
     {
+      id: 3,
       name: 'banh an dam',
       amount: '20',
       price: '68.000 ',
@@ -43,6 +46,7 @@ export default function DrawerContent(props) {
         'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
     },
     {
+      id: 4,
       name: 'Banh gao lut huu co 2',
       amount: '0',
       price: '72.000 ',
@@ -52,44 +56,9 @@ export default function DrawerContent(props) {
         'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
     },
     {
+      id: 5,
       name: 'Banh gao lut huu co 3',
       amount: '80',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 4',
-      amount: '99',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 5',
-      amount: '0',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 6',
-      amount: '80',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 7',
-      amount: '99',
       price: '72.000 ',
       detail:
         'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
@@ -137,9 +106,14 @@ export default function DrawerContent(props) {
                     />
                   )}
                   label={item.name}
+                  key={item.id}
                   onPress={() => {
-                    props.navigation.navigate('Cart', {
-                      name: 'tu',
+                    props.navigation.navigate('DetailProduct', {
+                      name: item.name,
+                      amount: item.amount,
+                      price: item.price,
+                      detail: item.detail,
+                      imageUrl: item.imageUrl,
                     });
                   }}
                 />
