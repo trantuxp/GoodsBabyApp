@@ -34,12 +34,10 @@ function _getColorFromStatus(amount) {
   //         (status.toLowerCase().trim() == 'comming soon' ? colors.warning : colors.success))
 }
 function ProductItem(props) {
-  let {name, amount, price, detail, imageUrl} = props.products; //destructuring an object
-  const {onPress} = props;
-
+  const {name, amount, price, detail, imageUrl} = props.products; //destructuring an object
+  const navigation = props.navigation;
   return (
     <TouchableOpacity
-      onPress={onPress}
       style={{
         height: 150,
         paddingStart: 10,
@@ -76,30 +74,6 @@ function ProductItem(props) {
             backgroundColor: 'black',
           }}
         />
-
-        <View style={{flexDirection: 'row'}}>
-          <Text
-            style={{
-              color: colors.inactive,
-              fontSize: fontsize.h4,
-            }}>
-            Số lượng còn:{' '}
-          </Text>
-          <Text
-            style={{
-              color: _getColorFromStatus(amount),
-              fontSize: fontsize.h4,
-            }}>
-            {amount.toUpperCase()}
-          </Text>
-        </View>
-        <Text
-          style={{
-            color: colors.primary,
-            fontSize: fontsize.h4,
-          }}>
-          Price: {price} $
-        </Text>
 
         <Text
           style={{

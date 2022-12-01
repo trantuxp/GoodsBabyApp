@@ -3,7 +3,7 @@ import {View, Text, Button} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import AdminNav from '../admin/AdminNav';
 import {
   Signin,
   Register,
@@ -12,6 +12,10 @@ import {
   Cart,
   DrawerContent,
   Product2Item,
+  Payment,
+  About,
+  ProductList,
+  News,
 } from '../screens';
 
 const Drawer = createDrawerNavigator();
@@ -22,9 +26,13 @@ const MystackSignin = () => {
       initialRouterName="Signin"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Signin" component={Signin} />
-      <Drawer.Screen name="DetailProduct" component={DetailProduct} />
+      <Stack.Screen name="DetailProduct" component={DetailProduct} />
       <Stack.Screen name="Homescreen" component={Homescreen} />
-      <Drawer.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="News" component={News} />
     </Stack.Navigator>
   );
 };
@@ -35,9 +43,12 @@ const MystackRegister = () => {
       initialRouterName="Register"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="Register" component={Register} />
-      <Drawer.Screen name="DetailProduct" component={DetailProduct} />
+      <Stack.Screen name="DetailProduct" component={DetailProduct} />
       <Stack.Screen name="Homescreen" component={Homescreen} />
-      <Drawer.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="News" component={News} />
     </Stack.Navigator>
   );
 };
@@ -59,6 +70,10 @@ export default function MainNavigator() {
         <Drawer.Screen name="Signin" component={MystackSignin} />
         <Drawer.Screen name="Register" component={MystackRegister} />
         <Drawer.Screen name="Product2Item" component={Product2Item} />
+        <Drawer.Screen name="Payment" component={Payment} />
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="ProductList" component={ProductList} />
+        <Drawer.Screen name="News" component={News} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

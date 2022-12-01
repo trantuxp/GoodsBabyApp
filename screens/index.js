@@ -8,6 +8,9 @@ import DetailProduct from './DetailProduct';
 import Cart from './Cart';
 import Taskbar from './Taskbar';
 import DrawerContent from './DrawerContent';
+import Payment from './Payment';
+import About from './About';
+import News from './News';
 export {
   Signin,
   Register,
@@ -19,4 +22,7 @@ export {
   Cart,
   Taskbar,
   DrawerContent,
+  Payment,
+  About,
+  News,
 };

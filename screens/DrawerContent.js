@@ -14,83 +14,60 @@ import {
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import {images, colors, fontsize} from '../constant';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export default function DrawerContent(props) {
   const [products, setproducts] = useState([
     {
       id: 1,
-      name: 'Banh gao lut huu co 1',
-      amount: '100',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
+      name: 'Đồ chơi lắp ráp',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+        'https://www.cuahangdochoi.vn/wp-content/uploads/2018/07/%C4%91%E1%BB%93-ch%C6%A1i-l%E1%BA%AFp-r%C3%A1p-cho-b%C3%A9-2.jpg',
     },
     {
       id: 2,
-      name: 'Bot an dam',
-      amount: '50',
-      price: '165.000 ',
-      detail: 'Bột ăn dặm Heinz súp lơ, bông cải, phô mai 200g (Trên 6 tháng)',
+      name: 'ĐỒ CHƠI NẤU ĂN',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/c/h/chao-heinz-bong-cai-sup-lo-pho-mai_1.jpg',
+        'https://sudospaces.com/babycuatoi/2020/01/889-63-bep-nau-an-co-lon-cho-be.jpg',
     },
     {
       id: 3,
-      name: 'banh an dam',
-      amount: '20',
-      price: '68.000 ',
-      detail: 'Bánh ăn dặm Pigeon vị rong biển 13366 (Trên 6 tháng)',
+      name: 'ĐỒ CHƠI GIÁO DỤC',
+
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+        'https://media.shoptretho.com.vn/upload/image/news/20170717/do-choi-giao-duc-2.gif',
     },
     {
       id: 4,
-      name: 'Banh gao lut huu co 2',
-      amount: '0',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      id: 5,
-      name: 'Banh gao lut huu co 3',
-      amount: '80',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+      name: 'BÚP BÊ',
+      imageUrl: 'https://cf.shopee.vn/file/0ab59f12d89178e1fa3b5825280ea854',
     },
   ]);
   const sizes = 100;
   return (
     <View style={{flex: 1}}>
-      <View style={{flex: 80}}>
+      <View style={{flex: 70}}>
         <View style={styles.userInfoSection}>
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 15,
-              marginBottom: 15,
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('Homescreen');
             }}>
-            <Avatar.Image
-              source={{
-                uri: 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-              }}
-              size={50}
-            />
             <View
               style={{
-                marginLeft: 15,
-                flexDirection: 'column',
+                flexDirection: 'row',
+                marginTop: 15,
+                marginBottom: 15,
               }}>
-              <Title style={styles.title}>John Doe</Title>
+              <Avatar.Image source={images.home} size={50} />
+              <View
+                style={{
+                  marginLeft: 15,
+                  flexDirection: 'column',
+                }}>
+                <Title style={styles.title}>ETMBaby</Title>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
 
         <DrawerContentScrollView {...props}>
@@ -108,7 +85,7 @@ export default function DrawerContent(props) {
                   label={item.name}
                   key={item.id}
                   onPress={() => {
-                    props.navigation.navigate('DetailProduct', {
+                    props.navigation.navigate('ProductList', {
                       name: item.name,
                       amount: item.amount,
                       price: item.price,
@@ -122,7 +99,7 @@ export default function DrawerContent(props) {
           </View>
         </DrawerContentScrollView>
       </View>
-      <View
+      {/* <View
         style={{
           height: 1,
           borderWidth: 1,
@@ -133,22 +110,39 @@ export default function DrawerContent(props) {
           marginHorizontal: 10,
           marginVertical: 10,
         }}
-      />
+      /> */}
+      <View style={{flex: 10}}>
+        <View style={styles.drawerSection}>
+          <DrawerItem
+            icon={({focused, color}) => (
+              <Image
+                source={images.news}
+                style={{height: 60, width: 60}}
+                resizeMode="contain"
+              />
+            )}
+            label="News"
+            onPress={() => {
+              props.navigation.navigate('News', {
+                name: 'tu',
+              });
+            }}
+          />
+        </View>
+      </View>
       <View style={{flex: 20}}>
         <View style={styles.drawerSection}>
           <DrawerItem
             icon={({focused, color}) => (
               <Image
-                source={{
-                  uri: 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-                }}
-                style={{height: 80, width: 80}}
+                source={images.infor}
+                style={{height: 70, width: 70}}
                 resizeMode="contain"
               />
             )}
             label="About"
             onPress={() => {
-              props.navigation.navigate('Cart', {
+              props.navigation.navigate('About', {
                 name: 'tu',
               });
             }}
@@ -192,9 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 3,
   },
-  drawerSection: {
-    marginTop: 15,
-  },
+  drawerSection: {},
   bottomDrawerSection: {
     marginBottom: 15,
     borderTopColor: '#f4f4f4',

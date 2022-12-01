@@ -21,87 +21,60 @@ import ProductItem from './ProductItem';
 import Product2Item from './Product2Item';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Taskbar from '../Taskbar';
 function ProductList(props) {
   const {navigation} = props;
   const [products, setproducts] = useState([
     {
-      name: 'Banh gao lut huu co 1',
+      id: 1,
+      name: 'Ráp tàu cướp biển chim cánh cụt 1240',
       amount: '100',
-      price: '72.000 ',
+      price: '125.000 ',
       detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
+        'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+        'https://dochoitreem.com/wp-content/uploads/2022/04/Rap-tau-cuop-bien-hcim-canh-cut-1240-500x480.jpg',
     },
     {
-      name: 'Bot an dam',
+      id: 2,
+      name: 'Lắp ráp robot và xe 2 in 1 7019',
       amount: '50',
-      price: '165.000 ',
-      detail: 'Bột ăn dặm Heinz súp lơ, bông cải, phô mai 200g (Trên 6 tháng)',
+      price: '240.000 ',
+      detail:
+        'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/c/h/chao-heinz-bong-cai-sup-lo-pho-mai_1.jpg',
+        'https://dochoitreem.com/wp-content/uploads/2022/07/Lap-rap-robot-va-xe-2-in-1-7019-500x480.jpg',
     },
     {
-      name: 'banh an dam',
+      id: 3,
+      name: 'Lắp ráp cho bé D373',
       amount: '20',
-      price: '68.000 ',
-      detail: 'Bánh ăn dặm Pigeon vị rong biển 13366 (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 2',
-      amount: '0',
-      price: '72.000 ',
+      price: '208.000 ',
       detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
+        'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+        'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-cho-be-D373-500x480.jpg',
     },
     {
-      name: 'Banh gao lut huu co 3',
+      id: 4,
+      name: 'Lắp ráp tàu chiến đấu 8 in 1 42022',
+      amount: '120',
+      price: '455.000 ',
+      detail:
+        'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
+      imageUrl:
+        'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-tau-chien-dau-8-in-1-42022-500x480.jpg',
+    },
+    {
+      id: 5,
+      name: 'Lắp ráp lâu đài Moira 20037Q',
       amount: '80',
-      price: '72.000 ',
+      price: '169.000 ',
       detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
+        'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
       imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 4',
-      amount: '99',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 5',
-      amount: '0',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 6',
-      amount: '80',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
-    },
-    {
-      name: 'Banh gao lut huu co 7',
-      amount: '99',
-      price: '72.000 ',
-      detail:
-        'Bánh gạo lứt hữu cơ Bebedang phô mai bí đỏ hình que (Trên 6 tháng)',
-      imageUrl:
-        'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg',
+        'https://dochoitreem.com/wp-content/uploads/2021/05/Lap-rap-lau-dai-Moira-20037Q-500x480.jpg',
     },
   ]);
 
@@ -111,7 +84,13 @@ function ProductList(props) {
         flex: 1,
         backgroundColor: 'white',
       }}>
-      {/* <View
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <Taskbar navigation={navigation} title="Đồ chơi lắp ráp" user="tu" />
+      </View>
+      <View
         style={{
           flex: 10,
           flexDirection: 'row',
@@ -144,30 +123,22 @@ function ProductList(props) {
           }}>
           <Icons name="search" size={30} color="gray" />
         </TouchableOpacity>
-      </View> */}
+      </View>
+
       <View
         style={{
           top: 20,
-          flex: 100,
+          flex: 80,
         }}>
-        <SafeAreaView>
+        <View style={{flex: 80}}>
           <FlatList
-            numColumns={2}
             keyExtractor={eachproducts => eachproducts.name}
             data={products}
             renderItem={({item}) => (
-              <Product2Item
-                products={item}
-                key={item.name}
-                navigation={this.props.navigation}
-                onPress={() => {
-                  navigation.navigate('DetailProduct');
-                  // alert(`you press item's name: ${item.name}`);
-                }}
-              />
+              <ProductItem navigation={navigation} products={item} />
             )}
           />
-        </SafeAreaView>
+        </View>
       </View>
     </View>
   );

@@ -10,9 +10,9 @@ import {
 import React, {Component, useState} from 'react';
 
 const images = [
-  'https://toplist.vn/images/800px/kclosetvn-648225.jpg',
-  'https://zkids.vn/images/companies/1/N%E1%BB%99i%20dung%20trang/qu%E1%BA%A7n%20%C3%A1o%20tr%E1%BA%BB%20em%20gi%C3%A1%20s%E1%BB%89/banner-quan-ao-tre-em-gia-si.jpg?1540634498382',
-  'https://bizweb.dktcdn.net/100/302/397/themes/754809/assets/slider_2.jpg?1614149879141',
+  'https://thietkeweb.vn/uploaded/H%C3%ACnh%202_%20Banner%20gi%C3%BAp%20t%C4%83ng%20l%C6%B0%E1%BB%A3t%20truy%20c%E1%BA%ADp%20website.png',
+  'https://vicogroup.vn/images/upload/images/a371b07d9bd5d0810d6a29d0ae6c9694.jpg',
+  'https://thietkeweb.vn/uploaded/H%C3%ACnh%203_%20C%E1%BA%A7n%20l%C6%B0u%20%C3%BD%20m%E1%BB%99t%20s%E1%BB%91%20%C4%91i%E1%BB%81u%20khi%20thi%E1%BA%BFt%20k%E1%BA%BF%20banner%20%C4%91%E1%BB%93%20ch%C6%A1i%20tr%E1%BA%BB%20em.jpg',
 ];
 
 const WIDTH = Dimensions.get('window').width;

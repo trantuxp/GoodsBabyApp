@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors, fontsize} from '../constant';
+import {colors, fontsize, images} from '../constant';
 import axios from 'axios';
 
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
@@ -76,10 +76,10 @@ function Getapi_Flatlist() {
       // them hang hoa
       .get(URL_themhh, {
         params: {
-          tensanpham: 'Xe tải đỏ 899-2H',
+          tensanpham: 'Lắp ráp Dream 6645B',
           soluong: '20',
-          gia: '185000',
-          anh: 'https://dochoitreem.com/wp-content/uploads/2022/09/Xe-tai-do-889-2H-500x480.jpg',
+          gia: '85.000',
+          anh: 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg',
           mota: 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
           iddanhmuc: '1',
         },
@@ -145,7 +145,7 @@ function Getapi_Flatlist() {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 90}}>
+      <View style={{flex: 80}}>
         <FlatList
           data={data}
           renderItem={({item}) => (
@@ -164,10 +164,19 @@ function Getapi_Flatlist() {
                   source={{
                     uri: item.anh,
                   }}
-                  style={{width: 100, height: 100}}
+                  style={{width: 60, height: 60}}
                   resizeMode="contain"
                 />
                 <Text>{item.tenhang}</Text>
+                <View style={{alignItems: 'flex-end', flex: 1}}>
+                  <Image
+                    source={images.close}
+                    style={{
+                      width: 20,
+                      height: 20,
+                      tintColor: 'gray',
+                    }}></Image>
+                </View>
               </View>
             </TouchableOpacity>
 

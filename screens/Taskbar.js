@@ -1,11 +1,21 @@
 import {Text, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {colors, fontsize, images} from '../constant';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Taskbar(props) {
   const {title} = props;
   const {user} = props;
   const {navigation} = props;
+  const [username, setusername] = useState('');
+  const [password, setpassword] = useState([]);
+  useEffect(() => {
+    AsyncStorage.getItem('username').then(result => {
+      setusername(result);
+    });
+    AsyncStorage.getItem('password').then(result => {
+      setpassword(result);
+    });
+  }, [username]);
   return (
     <View
       style={{
@@ -64,64 +74,67 @@ export default function Taskbar(props) {
           <Text style={styles.Text}>{title}</Text>
         </TouchableOpacity>
       </View>
-      {/* <View
-        style={{
-          flex: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      {username != null ? (
         <View
           style={{
-            flex: 1,
+            flex: 20,
             justifyContent: 'center',
             alignItems: 'center',
-            flexDirection: 'row',
+          }}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <TouchableOpacity
+              style={{marginRight: 5}}
+              onPress={() => {
+                navigation.navigate('');
+              }}>
+              <Text style={styles.Text}>{user}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                AsyncStorage.clear();
+                navigation.replace('Homescreen');
+              }}>
+              <Image
+                source={images.logout}
+                style={{
+                  width: 25,
+                  height: 25,
+                  alignItems: 'center',
+                  tintColor: colors.white,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : (
+        <View
+          style={{
+            flex: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
           <TouchableOpacity
-            style={{marginRight: 5}}
             onPress={() => {
-              alert('hi');
-            }}>
-            <Text style={styles.Text}>{user}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              alert('hi');
+              navigation.navigate('Signin');
             }}>
             <Image
-              source={images.logout}
+              source={images.account}
               style={{
-                width: 25,
-                height: 25,
+                width: 30,
+                height: 30,
                 alignItems: 'center',
                 tintColor: colors.white,
               }}
             />
           </TouchableOpacity>
         </View>
-      </View> */}
-
-      <View
-        style={{
-          flex: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Signin');
-          }}>
-          <Image
-            source={images.account}
-            style={{
-              width: 30,
-              height: 30,
-              alignItems: 'center',
-              tintColor: colors.white,
-            }}
-          />
-        </TouchableOpacity>
-      </View>
+      )}
 
       <View
         style={{
