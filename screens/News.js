@@ -67,7 +67,7 @@ function News(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Tin tức" user="tu" />
+        <Taskbar navigation={navigation} title="Tin tức" user="anhtu" />
       </View>
       <View
         style={{

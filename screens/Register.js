@@ -63,7 +63,7 @@ function Register(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Register" user="tu" />
+        <Taskbar navigation={navigation} title="Register" user="anhtu" />
       </View>
       <View
         style={{
@@ -278,7 +278,7 @@ function Register(props) {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Signin');
+                navigation.navigate('MystackSignin');
               }}>
               <Text
                 style={{

@@ -19,7 +19,7 @@ export default function Cart(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Giỏ hàng" user="tu" />
+        <Taskbar navigation={navigation} title="Giỏ hàng" user="anhtu" />
       </View>
       <View
         style={{

@@ -16,4 +16,6 @@ export default {
   infor: require('../assets/infor.png'),
   home: require('../assets/home.png'),
   news: require('../assets/news.png'),
+  order: require('../assets/order.png'),
+  product: require('../assets/product.png'),
 };

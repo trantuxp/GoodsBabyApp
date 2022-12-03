@@ -7,7 +7,7 @@ export default function Taskbar(props) {
   const {user} = props;
   const {navigation} = props;
   const [username, setusername] = useState('');
-  const [password, setpassword] = useState([]);
+  const [password, setpassword] = useState('');
   useEffect(() => {
     AsyncStorage.getItem('username').then(result => {
       setusername(result);
@@ -15,7 +15,7 @@ export default function Taskbar(props) {
     AsyncStorage.getItem('password').then(result => {
       setpassword(result);
     });
-  }, [username]);
+  }, [AsyncStorage.getItem('username')]);
   return (
     <View
       style={{
@@ -91,14 +91,15 @@ export default function Taskbar(props) {
             <TouchableOpacity
               style={{marginRight: 5}}
               onPress={() => {
-                navigation.navigate('');
+                navigation.navigate('MystackAdmin');
               }}>
               <Text style={styles.Text}>{user}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
+                setusername('');
+                navigation.replace('Signin');
                 AsyncStorage.clear();
-                navigation.replace('Homescreen');
               }}>
               <Image
                 source={images.logout}
@@ -121,7 +122,7 @@ export default function Taskbar(props) {
           }}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Signin');
+              navigation.navigate('MystackSignin');
             }}>
             <Image
               source={images.account}

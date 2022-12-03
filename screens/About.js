@@ -27,7 +27,7 @@ export default function About() {
           style={{
             flex: 10,
           }}>
-          <Taskbar navigation={navigation} title="About" user="tu" />
+          <Taskbar navigation={navigation} title="About" user="anhtu" />
         </View>
         <View
           style={{

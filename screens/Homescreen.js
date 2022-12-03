@@ -83,7 +83,7 @@ export default function Homescreen(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Home" user="tu" />
+        <Taskbar navigation={navigation} title="Home" user="anhtu" />
       </View>
       <View
         style={{

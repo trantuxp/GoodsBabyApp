@@ -36,7 +36,7 @@ export default function DetailProduct(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="DetailProduct" user="tu" />
+        <Taskbar navigation={navigation} title="DetailProduct" user="anhtu" />
       </View>
       <View style={{flexDirection: 'row', flex: 40}}>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

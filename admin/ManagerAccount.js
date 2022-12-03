@@ -11,11 +11,11 @@ import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontsize, images} from '../constant';
 import axios from 'axios';
-
+import TabBottom from '../admin/TabBottom';
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
 function ManagerAccount() {
-  const URL = 'http://192.168.1.7/serverAppCk/gettaikhoan.php';
-  const URL_themhh = 'http://192.168.1.7/serverAppCk/themhanghoa.php';
+  const URL = 'http://192.168.1.12/serverAppCk/gettaikhoan.php';
+  const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
   const [data, setdata] = useState([]);
 
   const [isloading, setisloading] = useState(true);
@@ -86,13 +86,31 @@ function ManagerAccount() {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 80}}>
+      <View
+        style={{
+          flex: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <View style={{flex: 40}}>
+          <Text>Tài khoản</Text>
+        </View>
+        <View style={{flex: 45}}>
+          <Text>Tên người dùng</Text>
+        </View>
+        <View style={{flex: 15}}>
+          <Text>Sự kiện</Text>
+        </View>
+      </View>
+      <View style={{flex: 70, paddingHorizontal: 10}}>
         <FlatList
           data={data}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => alert(item.tenhang)}>
+            <TouchableOpacity onPress={() => alert(item.tendn)}>
               <View
                 style={{
+                  height: 50,
                   flexDirection: 'row',
                   marginTop: 8,
                   padding: 5,
@@ -100,8 +118,11 @@ function ManagerAccount() {
                   shadowRadius: 4,
                   ShadowOpacity: 0.25,
                   alignItems: 'center',
+                  borderTopWidth: 1,
                 }}>
-                <Text>{item.tendn}</Text>
+                <Text style={{fontSize: fontsize.h5, color: colors.black}}>
+                  {item.tendn}
+                </Text>
                 <View style={{alignItems: 'flex-end', flex: 1}}>
                   <Image
                     source={images.close}
@@ -142,6 +163,9 @@ function ManagerAccount() {
             Thêm Tài khoản
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={{flex: 10}}>
+        <TabBottom />
       </View>
     </View>
   );

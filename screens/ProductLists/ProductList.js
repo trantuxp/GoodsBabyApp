@@ -88,7 +88,7 @@ function ProductList(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Đồ chơi lắp ráp" user="tu" />
+        <Taskbar navigation={navigation} title="Đồ chơi lắp ráp" user="anhtu" />
       </View>
       <View
         style={{

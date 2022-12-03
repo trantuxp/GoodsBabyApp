@@ -11,11 +11,13 @@ import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontsize, images} from '../constant';
 import axios from 'axios';
-
+import {useNavigation} from '@react-navigation/native';
+import TabBottom from '../admin/TabBottom';
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
-function Getapi_Flatlist() {
-  const URL = 'http://192.168.1.7/serverAppCk/getsanpham.php';
-  const URL_themhh = 'http://192.168.1.7/serverAppCk/themhanghoa.php';
+function Getapi_Flatlist(props) {
+  const navigation = useNavigation();
+  const URL = 'http://192.168.1.12/serverAppCk/getsanpham.php';
+  const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
   const [data, setdata] = useState([]);
 
   const [isloading, setisloading] = useState(true);
@@ -187,7 +189,8 @@ function Getapi_Flatlist() {
       <View style={{flex: 10}}>
         <TouchableOpacity
           onPress={() => {
-            calladdProduct();
+            // calladdProduct();
+            navigation.navigate('AddProduct');
           }}
           style={{
             width: '100%',
@@ -208,6 +211,9 @@ function Getapi_Flatlist() {
             Thêm hàng hóa
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={{flex: 10}}>
+        <TabBottom />
       </View>
     </View>
   );

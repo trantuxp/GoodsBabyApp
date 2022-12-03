@@ -7,11 +7,9 @@ import {
   ImageBackground,
   TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView,
   Keyboard,
 } from 'react-native';
 
-import image from '../constant/images';
 import {images, icons, fontsize, colors} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import {isValiEmail, isValiPassword} from '../utilies/validations';
@@ -63,7 +61,7 @@ function Signin(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Signin" user="tu" />
+        <Taskbar navigation={navigation} title="Signin" user="anhtu" />
       </View>
       <View
         style={{
@@ -83,7 +81,7 @@ function Signin(props) {
           Already have an Account?
         </Text>
         <Image
-          source={image.computer}
+          source={images.computer}
           style={{
             width: 120,
             height: 100,
@@ -244,7 +242,7 @@ function Signin(props) {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Register');
+                navigation.navigate('MystackRegister');
               }}>
               <Text
                 style={{
