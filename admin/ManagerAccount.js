@@ -15,7 +15,7 @@ import TabBottom from '../admin/TabBottom';
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
 function ManagerAccount() {
   const URL = 'http://192.168.1.12/serverAppCk/gettaikhoan.php';
-  const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
+  const URL_xoatk = 'http://192.168.1.12/serverAppCk/xoataihoan.php';
   const [data, setdata] = useState([]);
 
   const [isloading, setisloading] = useState(true);
@@ -41,32 +41,23 @@ function ManagerAccount() {
       });
   };
 
-  // const calladdProduct = async () => {
-  //   axios
-  //     // them hang hoa
-  //     .get(URL_themhh, {
-  //       params: {
-  //         tensanpham: 'Lắp ráp Dream 6645B',
-  //         soluong: '20',
-  //         gia: '85.000',
-  //         anh: 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg',
-  //         mota: 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
-  //         iddanhmuc: '1',
-  //       },
-  //     })
-  //     .then(res => {
-  //       // console.log(typeof res.data.data);
-  //       setdata(res.data.data);
-  //       // console.log(JSON.stringify(res.data.data));
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error);
-  //     })
-  //     .finally(function () {
-  //       // always executed
-  //     });
-  // };
+  const callDeleteAccount = async idtk => {
+    axios
+      // them hang hoa
+      .get(URL_xoatk, {
+        params: {
+          id: idtk,
+        },
+      })
+      .then(res => {})
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
 
   enderSeparator = () => {
     return (
@@ -103,27 +94,28 @@ function ManagerAccount() {
           <Text>Sự kiện</Text>
         </View>
       </View>
-      <View style={{flex: 70, paddingHorizontal: 10}}>
+      <View style={{flex: 80, paddingHorizontal: 10}}>
         <FlatList
           data={data}
-          renderItem={({item}) => (
-            <TouchableOpacity onPress={() => alert(item.tendn)}>
-              <View
-                style={{
-                  height: 50,
-                  flexDirection: 'row',
-                  marginTop: 8,
-                  padding: 5,
-                  shadowColor: '#000',
-                  shadowRadius: 4,
-                  ShadowOpacity: 0.25,
-                  alignItems: 'center',
-                  borderTopWidth: 1,
-                }}>
-                <Text style={{fontSize: fontsize.h5, color: colors.black}}>
-                  {item.tendn}
-                </Text>
-                <View style={{alignItems: 'flex-end', flex: 1}}>
+          renderItem={({item, key}) => (
+            <View
+              key={item.id}
+              style={{
+                height: 50,
+                flexDirection: 'row',
+                marginTop: 8,
+                padding: 5,
+                shadowColor: '#000',
+                shadowRadius: 4,
+                ShadowOpacity: 0.25,
+                alignItems: 'center',
+                borderTopWidth: 1,
+              }}>
+              <Text style={{fontSize: fontsize.h5, color: colors.black}}>
+                {item.tendn}
+              </Text>
+              <View style={{alignItems: 'flex-end', flex: 1}}>
+                <TouchableOpacity onPress={() => callDeleteAccount(item.id)}>
                   <Image
                     source={images.close}
                     style={{
@@ -131,39 +123,15 @@ function ManagerAccount() {
                       height: 20,
                       tintColor: 'gray',
                     }}></Image>
-                </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+            </View>
 
             // <Text style={styles.item}>{item.tenloaisp}</Text>
           )}
         />
       </View>
-      <View style={{flex: 10}}>
-        <TouchableOpacity
-          onPress={() => {
-            // calladdProduct();
-          }}
-          style={{
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: colors.alert,
-            borderRadius: 40,
-            borderColor: colors.primary,
-            borderWidth: 1,
-            height: 40,
-            borderRadius: 10,
-          }}>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: fontsize.h4,
-            }}>
-            Thêm Tài khoản
-          </Text>
-        </TouchableOpacity>
-      </View>
+
       <View style={{flex: 10}}>
         <TabBottom />
       </View>

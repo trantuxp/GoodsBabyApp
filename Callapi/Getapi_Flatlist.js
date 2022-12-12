@@ -16,30 +16,15 @@ import TabBottom from '../admin/TabBottom';
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
 function Getapi_Flatlist(props) {
   const navigation = useNavigation();
-  const URL = 'http://192.168.1.12/serverAppCk/getsanpham.php';
+  const URL = 'http://192.168.1.12/serverAppCk/gettatcasanpham.php';
   const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
+  const URL_xoahh = 'http://192.168.1.12/serverAppCk/xoahanghoa.php';
   const [data, setdata] = useState([]);
 
-  const [isloading, setisloading] = useState(true);
-
-  // const CallAPI = () => {
-  //   return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve({data: 'Data'});
-  //     }, 3000);
-  //   });
-  // };
-  // const getData = async setData => {
-  //   let data = await CallAPI();
-  //   setData(data);
-  // };
-  // useEffect(() => {
-  //   calGetUrl();
-  //   return () => {};
-  // });
   useEffect(() => {
     calGetUrl();
   }, [data]);
+
   const calGetUrl = async () => {
     axios
       .get(URL, {
@@ -84,6 +69,28 @@ function Getapi_Flatlist(props) {
           anh: 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg',
           mota: 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
           iddanhmuc: '1',
+        },
+      })
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdata(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+
+  const callDeleteProduct = async idhh => {
+    axios
+      // them hang hoa
+      .get(URL_xoahh, {
+        params: {
+          id: idhh,
         },
       })
       .then(res => {
@@ -151,26 +158,46 @@ function Getapi_Flatlist(props) {
         <FlatList
           data={data}
           renderItem={({item}) => (
-            <TouchableOpacity onPress={() => alert(item.tenhang)}>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginTop: 8,
+                padding: 5,
+                backgroundColor: '#FFF',
+                shadowRadius: 4,
+                ShadowOpacity: 0.25,
+                alignItems: 'center',
+              }}>
               <View
                 style={{
+                  flex: 90,
                   flexDirection: 'row',
-                  marginTop: 8,
-                  padding: 5,
-                  shadowColor: '#000',
-                  shadowRadius: 4,
-                  ShadowOpacity: 0.25,
                   alignItems: 'center',
                 }}>
-                <Image
-                  source={{
-                    uri: item.anh,
-                  }}
-                  style={{width: 60, height: 60}}
-                  resizeMode="contain"
-                />
-                <Text>{item.tenhang}</Text>
-                <View style={{alignItems: 'flex-end', flex: 1}}>
+                <TouchableOpacity onPress={() => alert(item.tenhang)}>
+                  <Image
+                    source={{
+                      uri: item.anh,
+                    }}
+                    style={{width: 60, height: 60}}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => alert(item.tenhang)}>
+                  <Text>{item.tenhang}</Text>
+                </TouchableOpacity>
+              </View>
+              <View
+                style={{
+                  flex: 10,
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    callDeleteProduct(item.id);
+                  }}>
                   <Image
                     source={images.close}
                     style={{
@@ -178,9 +205,9 @@ function Getapi_Flatlist(props) {
                       height: 20,
                       tintColor: 'gray',
                     }}></Image>
-                </View>
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
+            </View>
 
             // <Text style={styles.item}>{item.tenloaisp}</Text>
           )}
