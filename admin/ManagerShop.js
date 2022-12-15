@@ -12,7 +12,6 @@ import axios from 'axios';
 import TabBottom from '../admin/TabBottom';
 
 export default function ManagerShop() {
-  const [tensanpham, settensanpham] = useState();
   const [tenshop, settenshop] = useState();
   const [diachi, setdiachi] = useState();
   const [sodt, setsodt] = useState();
@@ -72,7 +71,7 @@ export default function ManagerShop() {
             </View>
             <View style={{flex: 70}}>
               <TextInput
-                onChange={text => {
+                onChangeText={text => {
                   settenshop(text);
                 }}
                 defaultValue={item.tenshop}
@@ -96,7 +95,7 @@ export default function ManagerShop() {
             </View>
             <View style={{flex: 70}}>
               <TextInput
-                onChange={text => {
+                onChangeText={text => {
                   setdiachi(text);
                 }}
                 defaultValue={item.diachi}
@@ -119,7 +118,7 @@ export default function ManagerShop() {
             </View>
             <View style={{flex: 70}}>
               <TextInput
-                onChange={text => {
+                onChangeText={text => {
                   setsodt(text);
                 }}
                 defaultValue={item.sodt}
@@ -142,7 +141,7 @@ export default function ManagerShop() {
             </View>
             <View style={{flex: 70}}>
               <TextInput
-                onChange={text => {
+                onChangeText={text => {
                   setemail(text);
                 }}
                 defaultValue={item.email}
@@ -162,7 +161,7 @@ export default function ManagerShop() {
       <View style={{flex: 10}}>
         <TouchableOpacity
           onPress={() => {
-            console.log(data);
+            console.log(diachi);
           }}
           style={{
             width: '100%',

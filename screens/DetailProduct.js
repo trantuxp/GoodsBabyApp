@@ -16,19 +16,57 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Taskbar from './Taskbar';
 import NumericInput from 'react-native-numeric-input';
-
+import axios from 'axios';
+import AddProduct from '../admin/AddProduct';
 export default function DetailProduct(props) {
   const [valueNumeric, setvalueNumeric] = useState(0);
   const navigation = useNavigation();
   const route = useRoute();
+  const id = route.params?.id;
   const name = route.params?.name;
   const amount = route.params?.amount;
   const price = route.params?.price;
   const detail = route.params?.detail;
   const imageUrl = route.params?.imageUrl;
+  const URL_themgh = 'http://192.168.1.12/serverAppCk/addcart.php';
   // const {name, amount, price, detail, imageUrl} = products;
 
-  console.log(Math.round(valueNumeric));
+  const calladdcart = async (
+    iduser,
+    idsp,
+    tenhang,
+    soluong,
+    soluongmua,
+    gia,
+    anh,
+    mota,
+  ) => {
+    axios
+      // them hang hoa
+      .get(URL_themgh, {
+        params: {
+          iduser: iduser,
+          idsp: idsp,
+          tenhang: tenhang,
+          soluong: soluong,
+          soluongmua: soluongmua,
+          gia: gia,
+          anh: anh,
+          mota: mota,
+        },
+      })
+      .then(res => {
+        console.log(typeof res.data.data);
+        console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -56,7 +94,7 @@ export default function DetailProduct(props) {
           <Text
             style={{
               marginVertical: 10,
-              fontSize: fontsize.h3,
+              fontSize: fontsize.h5,
               fontWeight: 'bold',
             }}>
             {name}
@@ -64,7 +102,7 @@ export default function DetailProduct(props) {
           <Text
             style={{
               marginVertical: 10,
-              fontSize: fontsize.h3,
+              fontSize: fontsize.h5,
               color: colors.alert,
               fontWeight: 'bold',
             }}>
@@ -92,14 +130,18 @@ export default function DetailProduct(props) {
             title="Buy"
             onPress={() => {
               setvalueNumeric(0);
-              navigation.navigate('Cart', {
-                name: name,
-                amount: amount,
-                price: price,
-                detail: detail,
-                imageUrl: imageUrl,
-                valueNumeric: Math.round(valueNumeric),
-              });
+              calladdcart(
+                3,
+                id,
+                name,
+                amount,
+                valueNumeric,
+                price,
+                imageUrl,
+                detail,
+              );
+              AddProduct;
+              navigation.navigate('Cart');
             }}></Button>
         </View>
       </View>

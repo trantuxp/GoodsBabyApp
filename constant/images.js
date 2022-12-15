@@ -18,4 +18,8 @@ export default {
   news: require('../assets/news.png'),
   order: require('../assets/order.png'),
   product: require('../assets/product.png'),
+  duyet: require('../assets/duyet.jpg'),
+  danggiao: require('../assets/danggiao.png'),
+  dagiao: require('../assets/dagiao.png'),
+  huydon: require('../assets/huydon.jpg'),
 };

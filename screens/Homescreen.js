@@ -9,6 +9,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontsize} from '../constant';
 import ProductList from './ProductLists/ProductList';
 import Taskbar from './Taskbar';
+import axios from 'axios';
 import Product2Item from './ProductLists/Product2Item';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
@@ -65,16 +66,39 @@ export default function Homescreen(props) {
         'https://dochoitreem.com/wp-content/uploads/2021/05/Lap-rap-lau-dai-Moira-20037Q-500x480.jpg',
     },
   ]);
+  const [data, setdata] = useState([]);
+  const URL_spmoinhat = 'http://192.168.1.12/serverAppCk/getspmoinhat.php';
+  useEffect(() => {
+    calGetUrl();
+  }, [data]);
+
+  const calGetUrl = async () => {
+    axios
+      .get(URL_spmoinhat)
+
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdata(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
 
   const navigation = useNavigation();
   const [username, setusername] = useState('');
   const [password, setpassword] = useState([]);
   useEffect(() => {
     AsyncStorage.getItem('username').then(result => {
-      setusername(result);
+      setusername('');
     });
     AsyncStorage.getItem('password').then(result => {
-      setpassword(result);
+      setpassword('');
     });
   }, []);
   return (
@@ -112,17 +136,17 @@ export default function Homescreen(props) {
             }}>
             <FlatList
               numColumns={2}
-              keyExtractor={eachproducts => eachproducts.name}
-              data={products}
+              data={data}
+              key={data.id}
               renderItem={({item}) => (
-                <Product2Item navigation={navigation} products={item} />
+                <Product2Item navigation={navigation} data={item} />
               )}
             />
           </View>
         </View>
-        {username != null
+        {/* {username != null
           ? console.log(`mail: ${username},password: ${password}`)
-          : null}
+          : null} */}
         {/* //dang xuat */}
         {/* <Text>Username: {username}</Text>
         <Text>Password: {password}</Text>*/}

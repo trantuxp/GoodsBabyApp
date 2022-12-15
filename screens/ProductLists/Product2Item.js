@@ -35,7 +35,7 @@ function _getColorFromStatus(amount) {
   //         (status.toLowerCase().trim() == 'comming soon' ? colors.warning : colors.success))
 }
 function Product2Item(props) {
-  const {name, amount, price, detail, imageUrl} = props.products; //destructuring an object
+  const {id, tenhang, soluong, dongia, anh, ngay, mota, iddanhmuc} = props.data; //destructuring an object
   const navigation = props.navigation;
 
   return (
@@ -43,11 +43,14 @@ function Product2Item(props) {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('DetailProduct', {
-            name: name,
-            amount: amount,
-            price: price,
-            detail: detail,
-            imageUrl: imageUrl,
+            id: id,
+            name: tenhang,
+            amount: soluong,
+            price: dongia,
+            detail: mota,
+            imageUrl: anh,
+            date: ngay,
+            iddanhmuc: iddanhmuc,
           });
         }}
         style={{
@@ -67,7 +70,7 @@ function Product2Item(props) {
             borderRadius: 10,
           }}
           source={{
-            uri: imageUrl,
+            uri: anh,
           }}
         />
         <Text
@@ -76,7 +79,7 @@ function Product2Item(props) {
             fontSize: fontsize.h4,
             fontWeight: 'bold',
           }}>
-          {name}
+          {tenhang}
         </Text>
         <Text
           style={{
@@ -84,7 +87,7 @@ function Product2Item(props) {
             fontSize: fontsize.h4,
             fontWeight: 'bold',
           }}>
-          {price}
+          {dongia}
         </Text>
       </TouchableOpacity>
     </View>

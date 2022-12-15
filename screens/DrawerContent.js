@@ -20,7 +20,7 @@ export default function DrawerContent(props) {
   const [products, setproducts] = useState([
     {
       id: 1,
-      name: 'Đồ chơi lắp ráp',
+      name: 'ĐỒ CHƠI LẮP RÁP',
       imageUrl:
         'https://www.cuahangdochoi.vn/wp-content/uploads/2018/07/%C4%91%E1%BB%93-ch%C6%A1i-l%E1%BA%AFp-r%C3%A1p-cho-b%C3%A9-2.jpg',
     },
@@ -86,11 +86,7 @@ export default function DrawerContent(props) {
                   key={item.id}
                   onPress={() => {
                     props.navigation.navigate('ProductList', {
-                      name: item.name,
-                      amount: item.amount,
-                      price: item.price,
-                      detail: item.detail,
-                      imageUrl: item.imageUrl,
+                      idloaisp: item.id,
                     });
                   }}
                 />

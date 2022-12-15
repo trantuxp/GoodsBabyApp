@@ -33,17 +33,7 @@ function Getapi_Flatlist(props) {
           idloaisp: 1,
         },
       })
-      //them hang hoa
-      // .get(URL, {
-      //   params: {
-      //     tensanpham: 'Xe tải đỏ 899-2H',
-      //     soluong: '20',
-      //     gia: '185000',
-      //     anh: 'https://dochoitreem.com/wp-content/uploads/2022/09/Xe-tai-do-889-2H-500x480.jpg',
-      //     mota: 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.',
-      //     iddanhmuc: '1',
-      //   },
-      // })
+
       .then(res => {
         // console.log(typeof res.data.data);
         setdata(res.data.data);

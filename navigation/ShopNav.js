@@ -34,12 +34,12 @@ const MystackSignin = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Signin" component={Signin} />
       <Stack.Screen name="Homescreen" component={Homescreen} />
-      <Drawer.Screen name="Product2Item" component={Product2Item} />
-      <Drawer.Screen name="Payment" component={Payment} />
-      <Drawer.Screen name="About" component={About} />
-      <Drawer.Screen name="ProductList" component={ProductList} />
-      <Drawer.Screen name="News" component={News} />
-      <Drawer.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="Payment" component={Payment} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="News" component={News} />
+      <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
   );
 };
@@ -47,13 +47,13 @@ const MystackSignin = () => {
 const MystackRegister = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Drawer.Screen name="Register" component={Register} />
-      <Drawer.Screen name="DetailProduct" component={DetailProduct} />
-      <Drawer.Screen name="Homescreen" component={Homescreen} />
-      <Drawer.Screen name="Product2Item" component={Product2Item} />
-      <Drawer.Screen name="About" component={About} />
-      <Drawer.Screen name="ProductList" component={ProductList} />
-      <Drawer.Screen name="News" component={News} />
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="DetailProduct" component={DetailProduct} />
+      <Stack.Screen name="Homescreen" component={Homescreen} />
+      <Stack.Screen name="Product2Item" component={Product2Item} />
+      <Stack.Screen name="About" component={About} />
+      <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="News" component={News} />
     </Stack.Navigator>
   );
 };
@@ -68,12 +68,12 @@ const MystackAdmin = () => {
           backgroundColor: colors.primary,
         },
       }}>
-      <Drawer.Screen name="Admin" component={AdminScreen} />
-      <Drawer.Screen name="ManagerProduct" component={Getapi_Flatlist} />
-      <Drawer.Screen name="ManagerAccount" component={ManagerAccount} />
-      <Drawer.Screen name="ManagerOrder" component={ManagerOrder} />
-      <Drawer.Screen name="ManagerShop" component={ManagerShop} />
-      <Drawer.Screen name="AddProduct" component={AddProduct} />
+      <Stack.Screen name="Admin" component={AdminScreen} />
+      <Stack.Screen name="ManagerProduct" component={Getapi_Flatlist} />
+      <Stack.Screen name="ManagerAccount" component={ManagerAccount} />
+      <Stack.Screen name="ManagerOrder" component={ManagerOrder} />
+      <Stack.Screen name="ManagerShop" component={ManagerShop} />
+      <Stack.Screen name="AddProduct" component={AddProduct} />
     </Stack.Navigator>
   );
 };

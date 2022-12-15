@@ -69,7 +69,7 @@ export default function Taskbar(props) {
         }}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Homescreen');
+            // navigation.navigate('Homescreen');
           }}>
           <Text style={styles.Text}>{title}</Text>
         </TouchableOpacity>
@@ -91,14 +91,14 @@ export default function Taskbar(props) {
             <TouchableOpacity
               style={{marginRight: 5}}
               onPress={() => {
-                navigation.navigate('MystackAdmin');
+                // navigation.navigate('MystackAdmin');
               }}>
               <Text style={styles.Text}>{user}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 setusername('');
-                navigation.replace('Signin');
+                navigation.navigate('Signin');
                 AsyncStorage.clear();
               }}>
               <Image
@@ -122,7 +122,7 @@ export default function Taskbar(props) {
           }}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('MystackSignin');
+              navigation.navigate('Signin');
             }}>
             <Image
               source={images.account}

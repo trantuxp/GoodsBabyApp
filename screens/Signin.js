@@ -49,6 +49,9 @@ function Signin(props) {
   const checkuser = (email, email1, password, password1) => {
     return email == email1 && password == password1;
   };
+  const checkadmin = (email, emailadmin, password, passwordadmin) => {
+    return email == emailadmin && password == passwordadmin;
+  };
   const {navigation} = props;
 
   return (
@@ -209,12 +212,15 @@ function Signin(props) {
             <TouchableOpacity
               disabled={isValidationOK() == false}
               onPress={() => {
-                AsyncStorage.setItem('username', email);
-                AsyncStorage.setItem('password', password);
-
-                {
-                  checkuser(email, email1, password, password1) == true &&
-                    navigation.navigate('Homescreen');
+                if (checkuser(email, email1, password, password1) == true) {
+                  AsyncStorage.setItem('username', email);
+                  AsyncStorage.setItem('password', password);
+                  navigation.navigate('Homescreen');
+                } else {
+                }
+                if (email == 'admin@gmail.com' && password == '12345') {
+                  navigation.navigate('MystackAdmin');
+                } else {
                 }
               }}
               title="LOGIN"
