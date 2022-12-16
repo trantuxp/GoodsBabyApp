@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 01, 2022 lúc 09:49 AM
+-- Thời gian đã tạo: Th12 16, 2022 lúc 03:17 PM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 8.0.2
 
@@ -58,6 +58,34 @@ INSERT INTO `cuahang` (`tenshop`, `diachi`, `sodt`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `danhgia`
+--
+
+CREATE TABLE `danhgia` (
+  `id` int(11) NOT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `idsp` int(11) DEFAULT NULL,
+  `sao` int(11) DEFAULT NULL,
+  `ngay` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhgia`
+--
+
+INSERT INTO `danhgia` (`id`, `iduser`, `idsp`, `sao`, `ngay`) VALUES
+(1, 1, 2, 5, '2022-12-01 16:02:31'),
+(2, 2, 3, 4, '2022-12-01 16:02:31'),
+(3, 1, 5, 5, '2022-12-01 16:02:41'),
+(4, 2, 4, 4, '2022-12-01 16:02:41'),
+(5, 3, 4, 5, '2022-12-01 16:03:34'),
+(6, 2, 5, 4, '2022-12-01 16:03:34'),
+(7, 6, 4, 5, '2022-12-01 16:03:52'),
+(8, 7, 4, 4, '2022-12-01 16:03:52');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `danhmuc`
 --
 
@@ -73,10 +101,10 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`id`, `tendanhmuc`, `anh`, `ngay`) VALUES
-(1, 'Ghế', 'https://png.pngtree.com/png-clipart/20190920/original/pngtree-wooden-backrest-chair-png-image_4611298.jpg', '2020-12-21 00:00:00'),
-(2, 'Bàn ăn', 'https://www.mdfuni.com/wp-content/uploads/2018/07/617.1.png', '2020-12-21 00:00:00'),
-(3, 'Giường ngủ', 'http://noithatchangson.vn/public/upload/products/2014/08/18/upload/19203be42ab60d4e88833fcf190e98ded9d1675e-14083352080217.jpg', '2020-12-21 00:00:00'),
-(4, 'Sofa', 'https://www.goxanh.vn/image/cache/data/go-xanh/hinh-anh-ghe-sofa-don-bang-dai-600x600.jpg', '2020-12-21 00:00:00');
+(1, 'ĐỒ CHƠI LẮP RÁP', 'https://www.cuahangdochoi.vn/wp-content/uploads/2018/07/%C4%91%E1%BB%93-ch%C6%A1i-l%E1%BA%AFp-r%C3%A1p-cho-b%C3%A9-2.jpg', '2020-12-21 00:00:00'),
+(2, 'ĐỒ CHƠI NẤU ĂN', 'https://sudospaces.com/babycuatoi/2020/01/889-63-bep-nau-an-co-lon-cho-be.jpg', '2020-12-21 00:00:00'),
+(3, 'ĐỒ CHƠI GIÁO DỤC', 'https://media.shoptretho.com.vn/upload/image/news/20170717/do-choi-giao-duc-2.gif', '2020-12-21 00:00:00'),
+(4, 'BÚP BÊ', 'https://cf.shopee.vn/file/0ab59f12d89178e1fa3b5825280ea854', '2020-12-21 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -135,7 +163,8 @@ CREATE TABLE `giohang` (
   `idsp` int(11) NOT NULL,
   `tenhang` varchar(30) DEFAULT NULL,
   `soluong` int(11) DEFAULT NULL,
-  `anh` varchar(500) DEFAULT NULL,
+  `soluongmua` int(11) NOT NULL,
+  `anh` text DEFAULT NULL,
   `gia` int(11) DEFAULT NULL,
   `mota` varchar(1000) DEFAULT NULL,
   `ngay` datetime DEFAULT current_timestamp()
@@ -145,11 +174,11 @@ CREATE TABLE `giohang` (
 -- Đang đổ dữ liệu cho bảng `giohang`
 --
 
-INSERT INTO `giohang` (`id`, `iduser`, `idsp`, `tenhang`, `soluong`, `anh`, `gia`, `mota`, `ngay`) VALUES
-(1, 1, 2, 'xe tai', 100, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', 86000, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', '2022-11-30 22:54:39'),
-(2, 1, 2, 'xe tai3', 100, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', 86000, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', '2022-11-30 22:54:43'),
-(3, 2, 3, 'xe tai1', 20, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', 100000, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', '2022-11-30 22:55:18'),
-(4, 2, 3, 'xe tai2', 20, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', 100000, 'https://media.bibomart.com.vn/resize.460x-/media/catalog/product/b/a/banh-gao-lut-huu-co-pho-mai-bi-do-hinh-que.jpg', '2022-11-30 22:55:22');
+INSERT INTO `giohang` (`id`, `iduser`, `idsp`, `tenhang`, `soluong`, `soluongmua`, `anh`, `gia`, `mota`, `ngay`) VALUES
+(6, 3, 48, 'Lắp ráp Dream 6645B', 20, 3, 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg', 85000, 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', '2022-12-15 00:58:46'),
+(7, 3, 46, 'Lắp ráp lâu đài Moira 20037Q', 20, 4, 'https://dochoitreem.com/wp-content/uploads/2021/05/Lap-rap-lau-dai-Moira-20037Q-500x480.jpg', 185000, 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', '2022-12-15 00:59:16'),
+(8, 3, 65, 'Búp bê khớp mắt thủy tinh đầm ', 50, 3, 'https://dochoitreem.com/wp-content/uploads/2022/05/Bup-be-khop-mat-thuy-tinh-dam-xanh-va-tu-quan-ao-500x480.jpg', 215000, 'Búp bê khớp mắt thủy tinh đầm xanh và tủ quần áo 01YBY195A\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', '2022-12-15 09:21:49'),
+(9, 3, 62, 'Búp bê cơ bản EVER AFTER HIGH ', 50, 0, 'https://dochoitreem.com/wp-content/uploads/2016/10/Bup-be-Ever-After-high-DLB34C-1-500x480.jpg', 349000, 'EVER AFTER HIGH búp bê cơ bản DLB34CD\r\n\r\nDòng búp bê  EVER AFTER HIGH là dòng sản phẩm của Công ty Mattel . Sản phẩm đã dựa vào bộ phim ăn khách của cùng công ty , bộ phim tên EVER AFTER HIGH .\r\n\r\nBúp bê  EVER AFTER HIGH búp bê cơ bản DLB34C này có những trang phục lạ mắt và dáng đứng cũng như khuôn mặt và đầu tóc khá độc đáo !\r\n\r\nVới các bé đã xem qua bộ phim này thì đây là sản phẩm không thể bỏ qua !\r\n\r\nCác mẹ có thể an tâm rằng sản phẩm đã được kiểm định chất lượng tuyệt đối an toàn cho các bé yêu, hãy nhanh tay đặt mua để thêm vào bộ sưu tập đồ chơi của bé nhé. Hãy cùng dochoitrem.com dành cho con yêu những gì tốt đẹp nhất.', '2022-12-15 09:22:57');
 
 -- --------------------------------------------------------
 
@@ -163,7 +192,7 @@ CREATE TABLE `hanghoa` (
   `soluong` int(11) NOT NULL,
   `dongia` double NOT NULL,
   `anh` varchar(5000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ngay` date DEFAULT current_timestamp(),
+  `ngay` datetime DEFAULT current_timestamp(),
   `mota` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `iddanhmuc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -173,26 +202,25 @@ CREATE TABLE `hanghoa` (
 --
 
 INSERT INTO `hanghoa` (`id`, `tenhang`, `soluong`, `dongia`, `anh`, `ngay`, `mota`, `iddanhmuc`) VALUES
-(2, 'Bàn ăn kính - BA020.007A11', 100, 6000000, 'https://www.nhaxinh.com/photo/6349/ghe_an_co_tay_porto.jpg', '2020-12-21', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch.', 2),
-(3, 'Giường ngủ TARY', 95, 3750000, 'https://homeoffice.com.vn/images/detailed/23/gn68021-giuong-ngu-kich-thuoc-1m4-02.jpg?t=1604472093', '2020-12-21', '- Với chất liệu gỗ cao su tiêu chuẩn AA sơn PU hoàn thiện kết hợp với khung chân sắt lắp ráp sơn tĩnh điện chắc chắn, kiểu dáng giường theo kiểu giường bệt Nhật Bản với chiều cao phủ bì 22cm kết hợp với nệm mang đến chiếc giường phòng ngủ đơn giản và đẹp mắt.', 3),
-(6, 'Bàn ăn Ceramic - HT83001-120[KL-99]', 100, 18000000, 'https://www.nhaxinh.com/photo/6349/ghe_an_co_tay_porto.jpg', '2020-12-16', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch.', 2),
-(7, 'Giường ngủ - GBD019.005A', 100, 30000000, 'https://demo037022.web30s.vn/datafiles/32573/upload/thumb_images/bedroom/GBD019_005A-2.jpg?t=1612258344', '2020-12-21', '- Với chất liệu gỗ cao su tiêu chuẩn AA sơn PU hoàn thiện kết hợp với khung chân sắt lắp ráp sơn tĩnh điện chắc chắn, kiểu dáng giường theo kiểu giường bệt Nhật Bản với chiều cao phủ bì 22cm kết hợp với nệm mang đến chiếc giường phòng ngủ đơn giản và đẹp mắt.', 3),
-(8, 'Sofa bộ Hoàn Mỹ - LAZIO-HM2', 20, 68000000, 'https://bizweb.dktcdn.net/thumb/large/100/410/706/products/lazio-hm2-g3-3-1.jpg?v=1606796585030', '2020-12-21', '- Sở hữu kiểu dáng đơn giản, màu xám trung tính phù hợp cho nhiều không gian phòng khách căn hộ, nhà phố hay ghế sofa tiếp khách tại các văn phòng, công ty. Với kích thước dài 170cm tư thế ngồi thoải mái, nệm dày chất lượng cao, vải bố xám đẹp mắt dễ phối vào từng không gian.', 4),
-(19, 'Sofa 121 3 chỗ hiện đại da nâu', 100, 56000000, 'https://i0.wp.com/mysofa.vn/wp-content/uploads/2019/12/sofa-da-dang-vang-dai-MyS-1912311.jpg?fit=750%2C600&ssl=1', '2021-01-11', '- Sở hữu kiểu dáng đơn giản, màu xám trung tính phù hợp cho nhiều không gian phòng khách căn hộ, nhà phố hay ghế sofa tiếp khách tại các văn phòng, công ty. Với kích thước dài 170cm tư thế ngồi thoải mái, nệm dày chất lượng cao, vải bố xám đẹp mắt dễ phối vào từng không gian.', 4),
-(20, 'Sofa Twoback 3 chỗ hiện đại vải Diego', 100, 33000000, 'https://www.nhaxinh.com/photo/5880/sofa_twoback_2,5_cho.jpg', '2021-01-11', '- Sở hữu kiểu dáng đơn giản, màu xám trung tính phù hợp cho nhiều không gian phòng khách căn hộ, nhà phố hay ghế sofa tiếp khách tại các văn phòng, công ty. Với kích thước dài 170cm tư thế ngồi thoải mái, nệm dày chất lượng cao, vải bố xám đẹp mắt dễ phối vào từng không gian.', 4),
-(21, 'Bàn ăn gỗ Sen', 100, 13000000, 'https://tubaydo.com/wp-content/uploads/2019/06/bo-ban-ghe-an-cham-sen-12.jpg', '2021-01-11', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch. ', 2),
-(22, 'Bàn ăn Dubai 1m8', 10, 9000000, 'https://www.nhaxinh.com/photo/5896/ban-an-dubai-1m8.jpg', '2021-01-11', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch. ', 2),
-(23, 'Bàn ăn Jazz 2m', 100, 17000000, 'https://product.hstatic.net/200000017298/product/1000-san-pham-nha-xinh_55__7c949d9db7c34190977813729855d9dc_master.jpg', '2021-01-11', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch. ', 2),
-(24, 'Giường ngủ bọc vải Pio 1m8', 100, 28000000, 'https://www.nhaxinh.com/photo/5238/giuong_pio.jpg', '2021-01-11', '- Với chất liệu gỗ cao su tiêu chuẩn AA sơn PU hoàn thiện kết hợp với khung chân sắt lắp ráp sơn tĩnh điện chắc chắn, kiểu dáng giường theo kiểu giường bệt Nhật Bản với chiều cao phủ bì 22cm kết hợp với nệm mang đến chiếc giường phòng ngủ đơn giản và đẹp mắt.', 3),
-(25, 'Giường ngủ gỗ Dixie 1m8', 50, 53000000, 'http://nhaxinh.com/photo/5797/giuong--dixie-1m8_-_copy.jpg', '2021-01-11', '- Với chất liệu gỗ cao su tiêu chuẩn AA sơn PU hoàn thiện kết hợp với khung chân sắt lắp ráp sơn tĩnh điện chắc chắn, kiểu dáng giường theo kiểu giường bệt Nhật Bản với chiều cao phủ bì 22cm kết hợp với nệm mang đến chiếc giường phòng ngủ đơn giản và đẹp mắt.', 3),
-(26, 'Giường ngủ gỗ Bụi 1m6', 100, 17000000, 'https://www.nhaxinh.com/photo/5869/giuong_bui_1.6m_vai_foster_1.jpg', '2021-01-11', '- Cạnh bàn được bo tròn, an toàn cho người sử dụng - kể cả với các gia đình có trẻ nhỏ.\r\n\r\n- Mặt bàn có vân gỗ đẹp tự nhiên.\r\n\r\n- Dễ vệ sinh sau khi dùng bữa.\r\n\r\n- Kiểu dáng đơn giản mà hiện đại, thanh lịch. ', 3),
-(42, 'Ráp tàu cướp biển chim cánh cụt 1240', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/04/Rap-tau-cuop-bien-hcim-canh-cut-1240-500x480.jpg', NULL, 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(43, 'Lắp ráp robot và xe 2 in 1 7019', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/07/Lap-rap-robot-va-xe-2-in-1-7019-500x480.jpg', '2022-11-30', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(44, 'Lắp ráp tàu chiến đấu 8 in 1 42022', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-tau-chien-dau-8-in-1-42022-500x480.jpg', '2022-11-30', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(45, 'Lắp ráp cho bé D373', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-cho-be-D373-500x480.jpg', '2022-11-30', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(46, 'Lắp ráp lâu đài Moira 20037Q', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2021/05/Lap-rap-lau-dai-Moira-20037Q-500x480.jpg', '2022-11-30', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(47, 'Xe tải đỏ 899-2H', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/09/Xe-tai-do-889-2H-500x480.jpg', '2022-11-30', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
-(48, 'Lắp ráp Dream 6645B', 20, 85, 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg', '2022-12-01', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1);
+(42, 'Ráp tàu cướp biển chim cánh cụt 1240', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/04/Rap-tau-cuop-bien-hcim-canh-cut-1240-500x480.jpg', '2022-12-15 08:24:11', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(43, 'Lắp ráp robot và xe 2 in 1 7019', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/07/Lap-rap-robot-va-xe-2-in-1-7019-500x480.jpg', '2022-11-30 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(44, 'Lắp ráp tàu chiến đấu 8 in 1 42022', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-tau-chien-dau-8-in-1-42022-500x480.jpg', '2022-11-30 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(45, 'Lắp ráp cho bé D373', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/01/Lap-rap-cho-be-D373-500x480.jpg', '2022-11-30 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(46, 'Lắp ráp lâu đài Moira 20037Q', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2021/05/Lap-rap-lau-dai-Moira-20037Q-500x480.jpg', '2022-11-30 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(47, 'Xe tải đỏ 899-2H', 20, 185000, 'https://dochoitreem.com/wp-content/uploads/2022/09/Xe-tai-do-889-2H-500x480.jpg', '2022-11-30 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(48, 'Lắp ráp Dream 6645B', 20, 85000, 'https://dochoitreem.com/wp-content/uploads/2020/12/Lap-rap-Dream-6645B-500x480.jpg', '2022-12-01 00:00:00', 'Sản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 1),
+(54, '\r\nXe đẩy bán kem có nhạc 8822B', 100, 169000, 'https://dochoitreem.com/wp-content/uploads/2022/12/Xe-day-ban-kem-nhac-500x480.png', '2022-12-15 08:23:49', 'Sản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 2),
+(55, 'Máy bán nước LOL không pin DN1020', 50, 210, 'https://dochoitreem.com/wp-content/uploads/2022/07/May-ban-nuoc-LOL-500x480.jpg', '2022-12-15 08:23:54', 'Máy bán nước LOL không pin DN1020\r\nSản phẩm được làm từ chất liệu nhựa an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.\r\n\r\n', 2),
+(56, 'Kệ đồ chơi nấu ăn 2 in 1 15R05\r\n', 60, 210000, 'https://dochoitreem.com/wp-content/uploads/2022/05/Ke-do-choi-nau-an-2-in-1-15R05-500x480.jpg', '2022-12-15 08:24:19', 'Kệ đồ chơi nấu ăn 2 in 1 15R05\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 2),
+(57, 'Đồ chơi nấu ăn bếp nướng xiên que cho bé 120453', 30, 179000, 'https://dochoitreem.com/wp-content/uploads/2022/05/Do-choi-nau-an-bep-nuong-xien-que-cho-be-120453-500x480.jpg', '2022-12-15 08:26:48', 'Đồ chơi nấu ăn bếp nướng xiên que cho bé 120453\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 2),
+(58, 'Bộ ghép chữ cái Puzzle cho bé GB6675-3', 40, 189, 'https://dochoitreem.com/wp-content/uploads/2022/08/Bo-ghep-chu-cai-puzzle-cho-be-GB6675-3-500x480.jpg', '2022-12-15 08:28:40', 'Bộ ghép chữ cái Puzzle cho bé GB6675-3\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 3),
+(59, 'Học liệu bóc dán thông minh dành cho các bé yêu', 70, 175000, 'https://dochoitreem.com/wp-content/uploads/2022/08/Hoc-lieu-boc-dan-thong-minh-danh-cho-cac-be-yeu-720x480.jpg', '2022-12-15 08:28:40', 'Học liệu bóc dán thông minh dành cho các bé yêu\r\nBộ học liệu bóc dán thông minh dành Cho cả bé trai và bé gái\r\n– Giáo cụ montessori phát triển khả năng toán học và khoa học tiếp nối bộ dành cho bé\r\n– Bộ 16 chủ đề gồm 22 trang và 163 sticker đi kèm với từng chủ đề\r\n\r\nƯU ĐIỂM SẢN PHẨM:\r\n– Học liệu bóc dán giấy ép cứng phủ bóng rất dày\r\n– Bền đẹp giúp bé chơi thoải mái không lo gãy gập.\r\n– Sticker được cắt laze đều mịn, đẹp, có kèm velcro cho bé tự hoàn thiện bộ đồ chơi bóc dán của mình.\r\n– Chủ đề đa dạng giúp giáo dục bé toàn diện và tăng độ thích thú cho bé\r\n– Dùng lại nhiều lần, khi dính gai velcro bị mòn mẹ có thể thay mới giúp bé và lại tiếp tục sử dụng như mới', 3),
+(60, 'BỘ HỌC LIỆU BÓC DÁN 17 CHỦ ĐỀ CHO BÉ GB6675', 50, 175000, 'https://dochoitreem.com/wp-content/uploads/2022/06/Bo-boc-dan-17-chu-de-cho-be-GB6675-500x480.jpg', '2022-12-15 08:30:50', 'BỘ HỌC LIỆU BÓC DÁN 17 CHỦ ĐỀ CHO BÉ GB6675\r\nGiai đoạn đầu đời là giai đoạn nhạy cảm xé dán nhất là từ 18 tháng trở đi. Bé vô cùng thích thú việc xé ra rồi dán lại.\r\nHọc liệu bóc dán đem lại lợi ích vô cùng tuyệt vời trong sự phát triển 5 năm đầu đời của bé:\r\nGiúp con học và ghi nhớ nhanh thông qua hình ảnh\r\nTăng vốn từ cho bé chậm nói\r\nNâng cao khả năng tri giác, nhận thức học matching', 3),
+(61, 'Ghép hình thay trang phục công chúa nam châm MWZ-966', 55, 185000, 'https://dochoitreem.com/wp-content/uploads/2021/07/Ghep-hinh-thay-trang-phuc-cong-chua-MWZ-966-500x480.jpg', '2022-12-15 08:30:50', 'Ghép hình thay trang phục công chúa nam châm MWZ-966\r\nSản phẩm được làm từ chất liệu an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 3),
+(62, 'Búp bê cơ bản EVER AFTER HIGH có khớp chân DLB34C', 50, 349000, 'https://dochoitreem.com/wp-content/uploads/2016/10/Bup-be-Ever-After-high-DLB34C-1-500x480.jpg', '2022-12-15 08:32:13', 'EVER AFTER HIGH búp bê cơ bản DLB34CD\r\n\r\nDòng búp bê  EVER AFTER HIGH là dòng sản phẩm của Công ty Mattel . Sản phẩm đã dựa vào bộ phim ăn khách của cùng công ty , bộ phim tên EVER AFTER HIGH .\r\n\r\nBúp bê  EVER AFTER HIGH búp bê cơ bản DLB34C này có những trang phục lạ mắt và dáng đứng cũng như khuôn mặt và đầu tóc khá độc đáo !\r\n\r\nVới các bé đã xem qua bộ phim này thì đây là sản phẩm không thể bỏ qua !\r\n\r\nCác mẹ có thể an tâm rằng sản phẩm đã được kiểm định chất lượng tuyệt đối an toàn cho các bé yêu, hãy nhanh tay đặt mua để thêm vào bộ sưu tập đồ chơi của bé nhé. Hãy cùng dochoitrem.com dành cho con yêu những gì tốt đẹp nhất.', 4),
+(63, 'Búp bê đầm đỏ, tóc dài, mắt thủy tinh LH124-B', 30, 199000, 'https://dochoitreem.com/wp-content/uploads/2022/08/Bup-be-dam-do-toc-dai-mat-thuy-tinh-LH124-B-500x480.jpg', '2022-12-15 08:32:13', 'Búp bê đầm đỏ, tóc dài, mắt thủy tinh LH124-B\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 4),
+(64, 'Búp bê Barbie nghề nghiệp đầu bếp FXN99/DVF50', 30, 239000, 'https://dochoitreem.com/wp-content/uploads/2020/12/bup-be-barbie-nghe-nghiep-dau-bep-DVF50_FXN99-230x240.jpg', '2022-12-15 08:33:50', 'Búp bê Barbie nghề nghiệp đầu bếp FXN99/DVF50\r\nSản phẩm được làm từ chất liệu nhựa và vải an toàn không gây độc hại cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 4),
+(65, 'Búp bê khớp mắt thủy tinh đầm xanh và tủ quần áo 01YBY195A', 50, 215000, 'https://dochoitreem.com/wp-content/uploads/2022/05/Bup-be-khop-mat-thuy-tinh-dam-xanh-va-tu-quan-ao-500x480.jpg', '2022-12-15 08:33:50', 'Búp bê khớp mắt thủy tinh đầm xanh và tủ quần áo 01YBY195A\r\nSản phẩm được làm từ chất liệu an toàn cho trẻ nhỏ, nên quý phụ huynh hoàn toàn có thể yên tâm sẽ không gây ảnh hưởng đến sức khỏe của bé.', 4);
 
 -- --------------------------------------------------------
 
@@ -219,7 +247,7 @@ CREATE TABLE `taikhoan` (
 
 INSERT INTO `taikhoan` (`id`, `tendn`, `matkhau`, `ngay`, `email`, `sodt`, `diachi`, `anh`, `vaitro`, `trangthai`) VALUES
 (1, 'admin', '123', '2020-12-22', 'tranxp34878@gmail.com', '1264607869', '26 Huỳnh Văn Nghệ', 'adn.jpg', '0', ''),
-(2, 'tu', '123', '2020-12-22', 'tranxp34878@gmail.com', '1264607869', '26 Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
+(2, 'anhtu', '123', '2020-12-22', 'tranxp34878@gmail.com', '1264607869', '26 Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
 (3, 'anh', '123', '0000-00-00', 'dangleloi102@gmail.com', '1264607869', '100 Huỳnh Văn Nghệ', 'adn.jpg', '0', ''),
 (4, 'tu1', '123', '0000-00-00', 'tranxp34878@gmail.com', '1264607869', '100 Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
 (5, 'tu102', '123', '0000-00-00', 'trantuxp34878@gmail.com', '1264607869', '26 Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
@@ -228,9 +256,7 @@ INSERT INTO `taikhoan` (`id`, `tendn`, `matkhau`, `ngay`, `email`, `sodt`, `diac
 (8, 'tuananh', '123', '2020-12-23', 'dangleloi102@gmail.com', '1264607869', '26 Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
 (9, 'p', '123', '2020-12-23', 'dangleloi102@gmail.com', '1264607869', '26Huỳnh Văn Nghệ', 'adn.jpg', '1', ''),
 (12, 'tranquoctu', '123', '2021-05-27', NULL, NULL, NULL, 'adn.jpg', '1', NULL),
-(14, 'anhtuan', '123', '2021-05-30', NULL, NULL, NULL, 'adn.jpg', '1', NULL),
-(15, 'avc', '123', '2021-05-30', NULL, NULL, NULL, 'adn.jpg', '1', NULL),
-(16, 'tai', '129', '2021-05-31', NULL, NULL, NULL, 'adn.jpg', '1', NULL);
+(14, 'anhtuan', '123', '2021-05-30', NULL, NULL, NULL, 'adn.jpg', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -264,6 +290,12 @@ INSERT INTO `tintuc` (`id`, `tentt`, `mota`, `anh`) VALUES
 ALTER TABLE `chitietdh`
   ADD KEY `iddh` (`iddh`),
   ADD KEY `idsp` (`idsp`);
+
+--
+-- Chỉ mục cho bảng `danhgia`
+--
+ALTER TABLE `danhgia`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `danhmuc`
@@ -308,6 +340,12 @@ ALTER TABLE `tintuc`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `danhgia`
+--
+ALTER TABLE `danhgia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -323,13 +361,13 @@ ALTER TABLE `donhang`
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `hanghoa`
 --
 ALTER TABLE `hanghoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `taikhoan`
