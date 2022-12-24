@@ -9,22 +9,23 @@ import {
 import React, {Component, useState, useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
 import Taskbar from './Taskbar';
-import {colors, fontsize, images} from '../constant';
+import {colors, fontsize, images, CallURL} from '../constant';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import NumericInput from 'react-native-numeric-input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
 export default function Cart(props) {
   const navigation = useNavigation();
+  const [valueNumeric, setvalueNumeric] = useState(2);
   const [data, setdata] = useState([]);
-  const URL_getcart = 'http://192.168.1.12/serverAppCk/getcart.php';
+
   useEffect(() => {
     calGetUrl();
   }, [data]);
 
   const calGetUrl = async () => {
     axios
-      .get(URL_getcart)
+      .get(CallURL.URL_getcart)
 
       .then(res => {
         // console.log(typeof res.data.data);
@@ -43,6 +44,81 @@ export default function Cart(props) {
   data.map(item => {
     result += item.gia * item.soluongmua;
   });
+
+  const updateCart = (idcart, soluongmua) => {
+    // 👇️ passing function to setData method
+
+    axios
+      // them hang hoa
+      .get(CallURL.URL_suagh, {
+        params: {
+          id: idcart,
+          soluongmua: soluongmua,
+        },
+      })
+      .then(res => {
+        console.log(typeof res.data.data);
+        console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+
+    // setdata(prevState => {
+    //   const newState = prevState.map(obj => {
+    //     // 👇️ if id equals 2, update country property
+    //     if (obj.id == idcart) {
+    //       return {...obj, soluongmua: soluongmua};
+    //     }
+
+    //     // 👇️ otherwise return object as is
+    //     return obj;
+    //   });
+
+    //   return newState;
+    // });
+  };
+
+  const DeleteCart = idcart => {
+    // 👇️ passing function to setData method
+
+    axios
+      // them hang hoa
+      .get(CallURL.URL_xoagh, {
+        params: {
+          id: idcart,
+        },
+      })
+      .then(res => {
+        console.log(typeof res.data.data);
+        console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+
+    // setdata(prevState => {
+    //   const newState = prevState.map(obj => {
+    //     // 👇️ if id equals 2, update country property
+    //     if (obj.id == idcart) {
+    //       return {...obj, soluongmua: soluongmua};
+    //     }
+
+    //     // 👇️ otherwise return object as is
+    //     return obj;
+    //   });
+
+    //   return newState;
+    // });
+  };
 
   return (
     <View
@@ -104,6 +180,7 @@ export default function Cart(props) {
                 </Text>
 
                 <NumericInput
+                  key={item.id}
                   width={20}
                   minValue={0}
                   maxValue={100}
@@ -117,7 +194,10 @@ export default function Cart(props) {
                   textColor="#000"
                   iconStyle={{color: 'black'}}
                   value={Number(item.soluongmua)}
-                  onChange={value => value}
+                  onChange={value => {
+                    // setvalueNumeric(value);
+                    updateCart(item.id, value);
+                  }}
                 />
               </View>
               <View
@@ -126,7 +206,11 @@ export default function Cart(props) {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <TouchableOpacity style={{justifyContent: 'center'}}>
+                <TouchableOpacity
+                  style={{justifyContent: 'center'}}
+                  onPress={() => {
+                    DeleteCart(item.id);
+                  }}>
                   <Image
                     source={images.close}
                     style={{

@@ -93,7 +93,7 @@ export default function Taskbar(props) {
               onPress={() => {
                 // navigation.navigate('MystackAdmin');
               }}>
-              <Text style={styles.Text}>{user}</Text>
+              <Text style={styles.Text}>{username}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {

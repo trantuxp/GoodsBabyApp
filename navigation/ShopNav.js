@@ -17,6 +17,7 @@ import {
   About,
   ProductList,
   News,
+  NewsList,
 } from '../screens';
 import {
   Getapi_Flatlist,
@@ -40,6 +41,7 @@ const MystackSignin = () => {
       <Stack.Screen name="ProductList" component={ProductList} />
       <Stack.Screen name="News" component={News} />
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="NewsList" component={NewsList} />
     </Stack.Navigator>
   );
 };
@@ -54,6 +56,8 @@ const MystackRegister = () => {
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="ProductList" component={ProductList} />
       <Stack.Screen name="News" component={News} />
+      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="NewsList" component={NewsList} />
     </Stack.Navigator>
   );
 };
@@ -101,6 +105,7 @@ export default function MainNavigator() {
         <Drawer.Screen name="About" component={About} />
         <Drawer.Screen name="ProductList" component={ProductList} />
         <Drawer.Screen name="News" component={News} />
+        <Drawer.Screen name="NewsList" component={NewsList} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

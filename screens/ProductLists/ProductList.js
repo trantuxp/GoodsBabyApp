@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import image from '../../constant/images';
-import {images, icons, fontsize, colors} from '../../constant';
+import {images, icons, fontsize, colors, CallURL} from '../../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import ProductItem from './ProductItem';
 import Product2Item from './Product2Item';
@@ -34,14 +34,14 @@ function ProductList(props) {
   const idloaisp = route.params?.idloaisp;
 
   const [data, setdata] = useState([]);
-  const URL_sptheodm = 'http://192.168.1.12/serverAppCk/getsanpham.php';
+
   useEffect(() => {
     calGetUrl();
   }, [data]);
 
   const calGetUrl = async () => {
     axios
-      .get(URL_sptheodm, {
+      .get(CallURL.URL_sptheodm, {
         params: {
           idloaisp: idloaisp,
         },
@@ -70,7 +70,7 @@ function ProductList(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Đồ chơi lắp ráp" user="anhtu" />
+        <Taskbar navigation={navigation} title="Đồ chơi lắp ráp" />
       </View>
       <View
         style={{

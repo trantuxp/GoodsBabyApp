@@ -14,48 +14,36 @@ import {
   Button,
 } from 'react-native';
 
-import image from '../constant';
-import {images, icons, fontsize, colors} from '../constant';
+import {images, icons, fontsize, colors, CallURL} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import ProductItem from './ProductLists/ProductItem';
-
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import axios from 'axios';
 import Taskbar from './Taskbar';
+import NewsList from './NewsList';
 function News(props) {
-  const {navigation} = props;
-  const [products, setproducts] = useState([
-    {
-      id: 1,
-      name: 'CÂU CHUYỆN GIÁO DỤC TỪ CÁCH MUA ĐỒ CHƠI CHO CON',
+  const [data, setdata] = useState([]);
 
-      detail:
-        'Mỗi năm một lần, chị Hoa (Hà Nội) đều đưa bé Nam đến làng trẻ Hữu Nghị để mang đồ chơi của mình tặng cho các bạn nhỏ khuyết tật, như một cách để giáo dục...',
-      imageUrl:
-        'https://dochoitreem.com/wp-content/uploads/2016/02/5956x640.jpg',
-    },
-    {
-      id: 2,
-      name: 'LÀM THẾ NÀO ĐỂ DẠY TRẺ THÓI QUEN TỰ LẬP TỪ BÉ',
-      amount: '50',
-      price: '240.000 ',
-      detail:
-        'Trẻ khi còn nhỏ nếu được ba mẹ nuông chiều sẽ nảy sinh tính ỷ lại, trở nên bướng bỉnh và không nghe lời. Vì vậy, để giáo dục trẻ một cách tốt...',
-      imageUrl:
-        'https://dochoitreem.com/wp-content/uploads/2015/09/lam-the-nao-de-day-tre-tu-tap-tu-nho-1.jpg',
-    },
-    {
-      id: 3,
-      name: 'NHỮNG MẢNG SÁNG TRONG TÍNH CÁCH TRẺ QUA CHỌN ĐỒ CHƠI',
-      amount: '20',
-      price: '208.000 ',
-      detail:
-        'Lựa chọn đúng loại đồ chơi có ích nhất cho bé thì cha mẹ nào cũng muốn nhưng không hẳn lúc nào cũng được như ý, thế nên đôi khi mua về mà bé còn nhỏ quá ...',
-      imageUrl:
-        'https://dochoitreem.com/wp-content/uploads/2016/02/nhung-mang-sang-trong-tinh-cach-tre-qua-chon-do-choi-2.jpg',
-    },
-  ]);
+  useEffect(() => {
+    calGetUrl();
+  }, [data]);
+
+  const calGetUrl = async () => {
+    axios
+      .get(CallURL.URL_gettintuc)
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdata(res.data.data);
+
+        console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+  const {navigation} = props;
 
   return (
     <View
@@ -67,7 +55,7 @@ function News(props) {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Tin tức" user="anhtu" />
+        <Taskbar navigation={navigation} title="Tin tức" />
       </View>
       <View
         style={{
@@ -111,10 +99,10 @@ function News(props) {
         }}>
         <View style={{flex: 80}}>
           <FlatList
-            keyExtractor={eachproducts => eachproducts.name}
-            data={products}
+            data={data}
+            key={data.id}
             renderItem={({item}) => (
-              <ProductItem navigation={navigation} products={item} />
+              <NewsList navigation={navigation} products={item} />
             )}
           />
         </View>

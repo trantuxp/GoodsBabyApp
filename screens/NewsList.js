@@ -9,46 +9,20 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from 'react-native';
-import {images, colors, icons, fontsize} from '../../constant';
+import {images, colors, icons, fontsize} from '../constant';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-function _getColorFromStatus(amount) {
-  /*
-    if(status.toLowerCase().trim() == 'opening now') {
-        return colors.success
-    } else if(status.toLowerCase().trim() == 'closing soon') {
-        return colors.alert
-    } else if(status.toLowerCase().trim() == 'comming soon') {
-        return colors.warning
-    }
-    return colors.success
-    */
-  return amount > 10
-    ? colors.success
-    : amount > 0
-    ? colors.warning
-    : colors.alert;
-
-  // return status.toLowerCase().trim() == 'opening now' ? colors.success :
-  //         (status.toLowerCase().trim() == 'closing soon' ? colors.alert :
-  //         (status.toLowerCase().trim() == 'comming soon' ? colors.warning : colors.success))
-}
-function ProductItem(props) {
-  const {id, tenhang, soluong, dongia, anh, ngay, mota, iddanhmuc} =
-    props.products; //destructuring an object
+function NewsList(props) {
+  const {id, tentt, mota, anh} = props.products; //destructuring an object
   const navigation = props.navigation;
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate('DetailProduct', {
           id: id,
-          name: tenhang,
-          amount: soluong,
-          price: dongia,
-          detail: mota,
-          imageUrl: anh,
-          date: ngay,
-          iddanhmuc: iddanhmuc,
+          tentt: tentt,
+          mota: mota,
+          anh: anh,
         });
       }}
       style={{
@@ -79,7 +53,7 @@ function ProductItem(props) {
             fontSize: fontsize.h4,
             fontWeight: 'bold',
           }}>
-          {tenhang}
+          {tentt}
         </Text>
         <View
           style={{
@@ -90,9 +64,9 @@ function ProductItem(props) {
 
         <Text
           style={{
-            height: 95,
             color: colors.inactive,
             fontSize: fontsize.h4,
+            height: 200,
           }}>
           Detail: {mota}
         </Text>
@@ -100,4 +74,4 @@ function ProductItem(props) {
     </TouchableOpacity>
   );
 }
-export default ProductItem;
+export default NewsList;

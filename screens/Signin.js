@@ -10,12 +10,14 @@ import {
   Keyboard,
 } from 'react-native';
 
-import {images, icons, fontsize, colors} from '../constant';
+import {images, icons, fontsize, colors, CallURL} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import {isValiEmail, isValiPassword} from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Taskbar from './Taskbar';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Item} from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
 
 function Signin(props) {
   //state for validating
@@ -33,6 +35,10 @@ function Signin(props) {
     isValiEmail(email) == true &&
     isValiPassword(password) == true;
   // check click enter input yet?
+
+  const [dataUser, setdataUser] = useState([]);
+  const [dataAdmin, setdataAdmin] = useState([]);
+
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', () => {
       setKeyboardIsShown(true);
@@ -41,16 +47,60 @@ function Signin(props) {
       setKeyboardIsShown(false);
     });
   });
+  useEffect(() => {
+    CallGetUser();
+  }, [dataUser]);
+
+  useEffect(() => {
+    CallGetAdmin();
+  }, [dataAdmin]);
+  const CallGetUser = async () => {
+    axios
+      .get(CallURL.URL_getuser)
+
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdataUser(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+  const CallGetAdmin = async () => {
+    axios
+      .get(CallURL.URL_getadmin)
+
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdataAdmin(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
 
   //currentuser
   const [email1, setemail1] = useState('anhtu@gmail.com');
   const [password1, setpassword1] = useState('12345');
 
   const checkuser = (email, email1, password, password1) => {
-    return email == email1 && password == password1;
+    dataUser.map(Item => {
+      if (email == Item.tendn && password == Item.matkhau) return true;
+    });
+    return false;
   };
   const checkadmin = (email, emailadmin, password, passwordadmin) => {
-    return email == emailadmin && password == passwordadmin;
+    return false;
   };
   const {navigation} = props;
 
@@ -212,16 +262,18 @@ function Signin(props) {
             <TouchableOpacity
               disabled={isValidationOK() == false}
               onPress={() => {
-                if (checkuser(email, email1, password, password1) == true) {
-                  AsyncStorage.setItem('username', email);
-                  AsyncStorage.setItem('password', password);
-                  navigation.navigate('Homescreen');
-                } else {
-                }
-                if (email == 'admin@gmail.com' && password == '12345') {
-                  navigation.navigate('MystackAdmin');
-                } else {
-                }
+                dataUser.map(Item => {
+                  if (email == Item.tendn && password == Item.matkhau) {
+                    AsyncStorage.setItem('username', email);
+                    AsyncStorage.setItem('password', password);
+                    navigation.navigate('Homescreen');
+                  }
+                });
+                dataAdmin.map(Item => {
+                  if (email == Item.tendn && password == Item.matkhau) {
+                    navigation.navigate('MystackAdmin');
+                  }
+                });
               }}
               title="LOGIN"
               style={{

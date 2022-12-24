@@ -13,9 +13,10 @@ import {
 } from 'react-native';
 
 import image from '../constant/images';
-import {images, icons, fontsize, colors} from '../constant';
+import {images, icons, fontsize, colors, CallURL} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import {UIButton} from '../compoments';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   isValiEmail,
   isValiPassword,
@@ -23,6 +24,7 @@ import {
 } from '../utilies/validations';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Taskbar from './Taskbar';
+import axios from 'axios';
 
 function Register(props) {
   //state for validating
@@ -52,6 +54,29 @@ function Register(props) {
       setKeyboardIsShown(false);
     });
   });
+
+  const calladdAccount = async (tendn, matkhau) => {
+    axios
+      // them hang hoa
+      .get(CallURL.URL_themtk, {
+        params: {
+          tendn: tendn,
+          matkhau: matkhau,
+        },
+      })
+      .then(res => {
+        // console.log(typeof res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+
   return (
     <View
       // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -251,7 +276,12 @@ function Register(props) {
             <TouchableOpacity
               disabled={isValidationOK() == false}
               onPress={() => {
-                alert(`Email = ${email},password = ${password}`);
+                calladdAccount(email, password);
+                navigation.navigate('Homescreen');
+                AsyncStorage.setItem('username', email);
+                AsyncStorage.setItem('password', password);
+                navigation.navigate('Homescreen');
+                // alert(`Email = ${email},password = ${password}`);
               }}
               title="LOGIN"
               style={{

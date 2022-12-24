@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import React, {Component, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors, fontsize} from '../constant';
+import {colors, fontsize, CallURL} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Taskbar from './Taskbar';
@@ -19,7 +19,7 @@ import NumericInput from 'react-native-numeric-input';
 import axios from 'axios';
 import AddProduct from '../admin/AddProduct';
 export default function DetailProduct(props) {
-  const [valueNumeric, setvalueNumeric] = useState(0);
+  const [valueNumeric, setvalueNumeric] = useState(1);
   const navigation = useNavigation();
   const route = useRoute();
   const id = route.params?.id;
@@ -28,7 +28,7 @@ export default function DetailProduct(props) {
   const price = route.params?.price;
   const detail = route.params?.detail;
   const imageUrl = route.params?.imageUrl;
-  const URL_themgh = 'http://192.168.1.12/serverAppCk/addcart.php';
+
   // const {name, amount, price, detail, imageUrl} = products;
 
   const calladdcart = async (
@@ -43,7 +43,7 @@ export default function DetailProduct(props) {
   ) => {
     axios
       // them hang hoa
-      .get(URL_themgh, {
+      .get(CallURL.URL_themgh, {
         params: {
           iduser: iduser,
           idsp: idsp,
@@ -129,19 +129,21 @@ export default function DetailProduct(props) {
             style={{backgroundColor: colors.primary}}
             title="Buy"
             onPress={() => {
-              setvalueNumeric(0);
-              calladdcart(
-                3,
-                id,
-                name,
-                amount,
-                valueNumeric,
-                price,
-                imageUrl,
-                detail,
-              );
-              AddProduct;
-              navigation.navigate('Cart');
+              if (valueNumeric > 0) {
+                setvalueNumeric(0);
+                calladdcart(
+                  3,
+                  id,
+                  name,
+                  amount,
+                  valueNumeric,
+                  price,
+                  imageUrl,
+                  detail,
+                );
+                AddProduct;
+                navigation.navigate('Cart');
+              }
             }}></Button>
         </View>
       </View>

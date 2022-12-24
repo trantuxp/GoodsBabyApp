@@ -11,6 +11,7 @@ import DrawerContent from './DrawerContent';
 import Payment from './Payment';
 import About from './About';
 import News from './News';
+import NewsList from './NewsList';
 export {
   Signin,
   Register,
@@ -25,4 +26,5 @@ export {
   Payment,
   About,
   News,
+  NewsList,
 };
