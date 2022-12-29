@@ -19,7 +19,7 @@
 			$row['iddanhmuc']));
 	}
 	$mangspmoinhat = [ 
-		"ok" => "tu bi dien" ,
+		
 		"data" => $mangspmoinhat 
 	];
 

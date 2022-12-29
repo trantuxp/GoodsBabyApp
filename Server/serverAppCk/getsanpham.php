@@ -1,9 +1,6 @@
 <?php
  	include "connect.php";
- 	$page = $_GET["page"];
  	$idloaisp=$_GET["idloaisp"];
- 	$space=5;
- 	$limit = ($page-1)*$space;
  	$mangsanpham= array();
  	$query= "SELECT * FROM hanghoa WHERE iddanhmuc=".$idloaisp." ";
  	$data= mysqli_query($connect,$query);
