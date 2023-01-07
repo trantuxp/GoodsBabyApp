@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontsize, CallURL} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -18,6 +18,7 @@ import Taskbar from './Taskbar';
 import NumericInput from 'react-native-numeric-input';
 import axios from 'axios';
 import AddProduct from '../admin/AddProduct';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function DetailProduct(props) {
   const [valueNumeric, setvalueNumeric] = useState(1);
   const navigation = useNavigation();
@@ -28,8 +29,58 @@ export default function DetailProduct(props) {
   const price = route.params?.price;
   const detail = route.params?.detail;
   const imageUrl = route.params?.imageUrl;
+  const [iduser, setiduser] = useState('');
+  const [dataCart, setdataCart] = useState([]);
+  let is_cart = true;
+  useEffect(() => {
+    CallCart();
+  }, [dataCart]);
 
+  useEffect(() => {
+    AsyncStorage.getItem('id').then(result => {
+      setiduser(result);
+    });
+  }, [AsyncStorage.getItem('id')]);
   // const {name, amount, price, detail, imageUrl} = products;
+
+  const CallCart = async () => {
+    axios
+      .get(CallURL.URL_getcart)
+
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdataCart(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+
+  const updateCart = (idcart, soluongmua) => {
+    // 👇️ passing function to setData method
+
+    axios
+      // them hang hoa
+      .get(CallURL.URL_suagh, {
+        params: {
+          id: idcart,
+          soluongmua: soluongmua,
+        },
+      })
+
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
 
   const calladdcart = async (
     iduser,
@@ -55,10 +106,7 @@ export default function DetailProduct(props) {
           mota: mota,
         },
       })
-      .then(res => {
-        console.log(typeof res.data.data);
-        console.log(JSON.stringify(res.data.data));
-      })
+
       .catch(function (error) {
         // handle error
         console.log(error);
@@ -130,18 +178,31 @@ export default function DetailProduct(props) {
             title="Buy"
             onPress={() => {
               if (valueNumeric > 0) {
-                setvalueNumeric(0);
-                calladdcart(
-                  3,
-                  id,
-                  name,
-                  amount,
-                  valueNumeric,
-                  price,
-                  imageUrl,
-                  detail,
-                );
-                AddProduct;
+                setvalueNumeric(1);
+
+                dataCart.map(Item => {
+                  if (iduser === Item.iduser && id === Item.idsp) {
+                    let tongsoluongmua =
+                      Number(Item.soluongmua) + Number(valueNumeric);
+                    updateCart(Item.id, tongsoluongmua);
+                    is_cart = false;
+                  } else {
+                  }
+                });
+                if (is_cart == true) {
+                  calladdcart(
+                    iduser,
+                    id,
+                    name,
+                    amount,
+                    valueNumeric,
+                    price,
+                    imageUrl,
+                    detail,
+                  );
+                } else {
+                }
+
                 navigation.navigate('Cart');
               }
             }}></Button>

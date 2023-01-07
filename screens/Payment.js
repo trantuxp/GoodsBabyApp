@@ -5,12 +5,78 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React, {Component} from 'react';
-import {colors, fontsize, images} from '../constant';
+import React, {Component, useState, useEffect} from 'react';
+import {colors, fontsize, images, CallURL} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Payment(props) {
   const navigation = useNavigation();
+  const route = useRoute();
+  const result = route.params?.result;
+  const result_soluongsp = route.params?.result_soluongsp;
+  const [tenuser, settenuser] = useState();
+  const [diachi, setdiachi] = useState();
+  const [sodt, setsodt] = useState();
+  const [email, setemail] = useState();
+  const [iduser, setiduser] = useState();
+  useEffect(() => {
+    AsyncStorage.getItem('id').then(result => {
+      setiduser(result);
+    });
+  }, [AsyncStorage.getItem('id')]);
+
+  const AddOrder = (
+    idkhachhang,
+    tenkhachhang,
+    diachi,
+    sodt,
+    email,
+    tongsanpham,
+    tongtien,
+  ) => {
+    // 👇️ passing function to setData method
+
+    axios
+      // them hang hoa
+      .get(CallURL.URL_themdh, {
+        params: {
+          idkhachhang: idkhachhang,
+          tenkhachhang: tenkhachhang,
+          diachi: diachi,
+          sodt: sodt,
+          email: email,
+          tongsanpham: tongsanpham,
+          tongtien: tongtien,
+        },
+      })
+      .then(res => {
+        console.log(typeof res.data.data);
+        console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+
+    // setdata(prevState => {
+    //   const newState = prevState.map(obj => {
+    //     // 👇️ if id equals 2, update country property
+    //     if (obj.id == idcart) {
+    //       return {...obj, soluongmua: soluongmua};
+    //     }
+
+    //     // 👇️ otherwise return object as is
+    //     return obj;
+    //   });
+
+    //   return newState;
+    // });
+  };
   return (
     <View
       style={{
@@ -49,6 +115,11 @@ export default function Payment(props) {
               Họ và tên:
             </Text>
             <TextInput
+              onChangeText={text => {
+                // set errormail with enough condition yet?
+
+                settenuser(text);
+              }}
               placeholder="Nguyễn Văn A"
               placeholderTextColor={colors.placeholder}
             />
@@ -75,6 +146,11 @@ export default function Payment(props) {
               Địa chỉ:
             </Text>
             <TextInput
+              onChangeText={text => {
+                // set errormail with enough condition yet?
+
+                setdiachi(text);
+              }}
               placeholder="số nhà - đường - Phường - Thành Phố"
               placeholderTextColor={colors.placeholder}
             />
@@ -101,6 +177,11 @@ export default function Payment(props) {
               Số liên lạc:
             </Text>
             <TextInput
+              onChangeText={text => {
+                // set errormail with enough condition yet?
+
+                setsodt(text);
+              }}
               placeholder="84+ "
               placeholderTextColor={colors.placeholder}
             />
@@ -127,6 +208,11 @@ export default function Payment(props) {
               Email:
             </Text>
             <TextInput
+              onChangeText={text => {
+                // set errormail with enough condition yet?
+
+                setemail(text);
+              }}
               placeholder="example@gmail.com"
               placeholderTextColor={colors.placeholder}
             />
@@ -149,6 +235,17 @@ export default function Payment(props) {
         }}>
         <TouchableOpacity
           onPress={() => {
+            AddOrder(
+              iduser,
+              tenuser,
+              diachi,
+              sodt,
+              email,
+              result_soluongsp,
+              result,
+            );
+            alert(result + result_soluongsp + iduser);
+            alert(tenuser + diachi + sodt + email);
             navigation.navigate('Homescreen');
           }}
           title="LOGIN"

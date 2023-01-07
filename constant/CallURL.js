@@ -1,4 +1,4 @@
-const HOST = 'http://192.168.1.5';
+const HOST = 'http://192.168.1.3';
 export default {
   URL_getcart: HOST + '/serverAppCk/getcart.php',
   URL_spmoinhat: HOST + '/serverAppCk/getspmoinhat.php',
@@ -17,4 +17,5 @@ export default {
   URL_sptheodm: HOST + '/serverAppCk/getsanpham.php',
   URL_gettintuc: HOST + '/serverAppCk/gettintuc.php',
   URL_themtk: HOST + '/serverAppCk/themtaikhoan.php',
+  URL_themdh: HOST + '/serverAppCk/themdonhang.php',
 };

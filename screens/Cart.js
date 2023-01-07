@@ -14,10 +14,17 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import NumericInput from 'react-native-numeric-input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Cart(props) {
   const navigation = useNavigation();
   const [valueNumeric, setvalueNumeric] = useState(2);
   const [data, setdata] = useState([]);
+  const [iduser, setiduser] = useState('');
+  useEffect(() => {
+    AsyncStorage.getItem('id').then(result => {
+      setiduser(result);
+    });
+  }, [AsyncStorage.getItem('id')]);
 
   useEffect(() => {
     calGetUrl();
@@ -40,9 +47,12 @@ export default function Cart(props) {
         // always executed
       });
   };
+
   let result = 0;
+  let result_soluongsp = 0;
   data.map(item => {
     result += item.gia * item.soluongmua;
+    result_soluongsp += item.soluongmua;
   });
 
   const updateCart = (idcart, soluongmua) => {
@@ -104,20 +114,6 @@ export default function Cart(props) {
       .finally(function () {
         // always executed
       });
-
-    // setdata(prevState => {
-    //   const newState = prevState.map(obj => {
-    //     // 👇️ if id equals 2, update country property
-    //     if (obj.id == idcart) {
-    //       return {...obj, soluongmua: soluongmua};
-    //     }
-
-    //     // 👇️ otherwise return object as is
-    //     return obj;
-    //   });
-
-    //   return newState;
-    // });
   };
 
   return (
@@ -258,7 +254,10 @@ export default function Cart(props) {
           }}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Payment');
+              navigation.navigate('Payment', {
+                result: result,
+                result_soluongsp: result_soluongsp,
+              });
             }}
             style={{
               width: '100%',

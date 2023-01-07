@@ -264,13 +264,17 @@ function Signin(props) {
               onPress={() => {
                 dataUser.map(Item => {
                   if (email == Item.tendn && password == Item.matkhau) {
-                    AsyncStorage.setItem('username', email);
-                    AsyncStorage.setItem('password', password);
+                    AsyncStorage.setItem('username', Item.tendn);
+                    AsyncStorage.setItem('password', Item.matkhau);
+                    AsyncStorage.setItem('id', Item.id);
                     navigation.navigate('Homescreen');
                   }
                 });
                 dataAdmin.map(Item => {
                   if (email == Item.tendn && password == Item.matkhau) {
+                    AsyncStorage.setItem('username', Item.tendn);
+                    AsyncStorage.setItem('password', Item.matkhau);
+                    AsyncStorage.setItem('id', Item.id);
                     navigation.navigate('MystackAdmin');
                   }
                 });

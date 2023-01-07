@@ -9,16 +9,14 @@ import {
 } from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors, fontsize, images} from '../constant';
+import {CallURL, colors, fontsize, images} from '../constant';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 import TabBottom from '../admin/TabBottom';
-const URL1 = 'https://jsonplaceholder.typicode.com/users';
+
 function Getapi_Flatlist(props) {
   const navigation = useNavigation();
-  const URL = 'http://192.168.1.12/serverAppCk/gettatcasanpham.php';
-  const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
-  const URL_xoahh = 'http://192.168.1.12/serverAppCk/xoahanghoa.php';
+
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ function Getapi_Flatlist(props) {
 
   const calGetUrl = async () => {
     axios
-      .get(URL, {
+      .get(CallURL.URL_gethh, {
         params: {
           page: 1,
           idloaisp: 1,
@@ -78,7 +76,7 @@ function Getapi_Flatlist(props) {
   const callDeleteProduct = async idhh => {
     axios
       // them hang hoa
-      .get(URL_xoahh, {
+      .get(CallURL.URL_xoahh, {
         params: {
           id: idhh,
         },

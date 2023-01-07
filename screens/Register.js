@@ -277,9 +277,15 @@ function Register(props) {
               disabled={isValidationOK() == false}
               onPress={() => {
                 calladdAccount(email, password);
-                navigation.navigate('Homescreen');
+
                 AsyncStorage.setItem('username', email);
                 AsyncStorage.setItem('password', password);
+                dataUser.map(Item => {
+                  if (email == Item.tendn && password == Item.matkhau) {
+                    AsyncStorage.setItem('id', Item.id);
+                  }
+                });
+
                 navigation.navigate('Homescreen');
                 // alert(`Email = ${email},password = ${password}`);
               }}
