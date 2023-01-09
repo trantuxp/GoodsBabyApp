@@ -9,13 +9,11 @@ import {
 } from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors, fontsize, images} from '../constant';
+import {colors, fontsize, images, CallURL} from '../constant';
 import axios from 'axios';
 import TabBottom from '../admin/TabBottom';
 const URL1 = 'https://jsonplaceholder.typicode.com/users';
 function ManagerAccount() {
-  const URL = 'http://192.168.1.12/serverAppCk/gettaikhoan.php';
-  const URL_xoatk = 'http://192.168.1.12/serverAppCk/xoataihoan.php';
   const [data, setdata] = useState([]);
 
   const [isloading, setisloading] = useState(true);
@@ -25,7 +23,7 @@ function ManagerAccount() {
   }, [data]);
   const calGetUrl = async () => {
     axios
-      .get(URL)
+      .get(CallURL.URL_gettk)
 
       .then(res => {
         // console.log(typeof res.data.data);
@@ -44,7 +42,7 @@ function ManagerAccount() {
   const callDeleteAccount = async idtk => {
     axios
       // them hang hoa
-      .get(URL_xoatk, {
+      .get(CallURL.URL_xoatk, {
         params: {
           id: idtk,
         },

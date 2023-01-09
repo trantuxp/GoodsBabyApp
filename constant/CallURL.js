@@ -6,6 +6,7 @@ export default {
   URL_themhh: HOST + '/serverAppCk/themhanghoa.php',
   URL_xoahh: HOST + '/serverAppCk/xoahanghoa.php',
   URL_getch: HOST + '/serverAppCk/getcuahang.php',
+  URL_suach: HOST + '/serverAppCk/suattcuahang.php',
   URL_gettk: HOST + '/serverAppCk/gettaikhoan.php',
   URL_xoatk: HOST + '/serverAppCk/xoataihoan.php',
   URL_themgh: HOST + '/serverAppCk/addcart.php',

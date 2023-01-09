@@ -6,7 +6,7 @@ import {
   TextInput,
 } from 'react-native';
 import React, {Component, useState} from 'react';
-import {colors, fontsize} from '../constant';
+import {colors, fontsize, CallURL} from '../constant';
 import TabBottom from '../admin/TabBottom';
 import axios from 'axios';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -19,7 +19,7 @@ export default function AddProduct() {
   const [anh, setanh] = useState();
   const [mota, setmota] = useState();
   const [iddanhmuc, setiddanhmuc] = useState();
-  const URL_themhh = 'http://192.168.1.12/serverAppCk/themhanghoa.php';
+
   const countries = [
     'ĐỒ CHƠI LẮP RÁP',
     'ĐỒ CHƠI NẤU ĂN',
@@ -37,7 +37,7 @@ export default function AddProduct() {
   ) => {
     axios
       // them hang hoa
-      .get(URL_themhh, {
+      .get(CallURL.URL_themhh, {
         params: {
           tensanpham: tensanpham,
           soluong: soluong,
