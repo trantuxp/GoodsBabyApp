@@ -168,7 +168,7 @@ export default function DetailProduct(props) {
               iconStyle={{color: 'white'}}
               rightButtonBackgroundColor="#EA3788"
               leftButtonBackgroundColor="#E56B70"
-              value={valueNumeric}
+              initValue={valueNumeric}
               onChange={value => setvalueNumeric(value)}
             />
           </View>

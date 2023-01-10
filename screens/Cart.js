@@ -189,7 +189,7 @@ export default function Cart(props) {
                   rounded
                   textColor="#000"
                   iconStyle={{color: 'black'}}
-                  value={Number(item.soluongmua)}
+                  initValue={Number(item.soluongmua)}
                   onChange={value => {
                     // setvalueNumeric(value);
                     updateCart(item.id, value);
