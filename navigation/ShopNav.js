@@ -21,6 +21,10 @@ import {
   DetailNews,
   UserInfo,
   Search,
+  MyCancelOrder,
+  MyDelivered,
+  MyDelivering,
+  MyOrder,
 } from '../screens';
 import {
   Getapi_Flatlist,
@@ -52,6 +56,10 @@ const MystackSignin = () => {
       <Stack.Screen name="DetailNews" component={DetailNews} />
       <Stack.Screen name="UserInfo" component={UserInfo} />
       <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="MyCancelOrder" component={MyCancelOrder} />
+      <Stack.Screen name="MyDelivered" component={MyDelivered} />
+      <Stack.Screen name="MyDelivering" component={MyDelivering} />
+      <Stack.Screen name="MyOrder" component={MyOrder} />
     </Stack.Navigator>
   );
 };
@@ -71,6 +79,10 @@ const MystackRegister = () => {
       <Stack.Screen name="DetailNews" component={DetailNews} />
       <Stack.Screen name="UserInfo" component={UserInfo} />
       <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="MyCancelOrder" component={MyCancelOrder} />
+      <Stack.Screen name="MyDelivered" component={MyDelivered} />
+      <Stack.Screen name="MyDelivering" component={MyDelivering} />
+      <Stack.Screen name="MyOrder" component={MyOrder} />
     </Stack.Navigator>
   );
 };
@@ -126,6 +138,11 @@ export default function MainNavigator() {
         <Drawer.Screen name="DetailNews" component={DetailNews} />
         <Drawer.Screen name="UserInfo" component={UserInfo} />
         <Drawer.Screen name="Search" component={Search} />
+
+        <Drawer.Screen name="MyCancelOrder" component={MyCancelOrder} />
+        <Drawer.Screen name="MyDelivered" component={MyDelivered} />
+        <Drawer.Screen name="MyDelivering" component={MyDelivering} />
+        <Drawer.Screen name="MyOrder" component={MyOrder} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
