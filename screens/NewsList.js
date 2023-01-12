@@ -18,7 +18,7 @@ function NewsList(props) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailProduct', {
+        navigation.navigate('DetailNews', {
           id: id,
           tentt: tentt,
           mota: mota,

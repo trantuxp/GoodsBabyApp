@@ -162,7 +162,18 @@ function Getapi_Flatlist(props) {
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}>
-                <TouchableOpacity onPress={() => alert(item.tenhang)}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RepairProduct', {
+                      id: item.id,
+                      tensanpham: item.tenhang,
+                      soluong: item.soluong,
+                      gia: item.gia,
+                      anh: item.anh,
+                      mota: item.mota,
+                      iddanhmuc: item.iddanhmuc,
+                    });
+                  }}>
                   <Image
                     source={{
                       uri: item.anh,
@@ -171,7 +182,18 @@ function Getapi_Flatlist(props) {
                     resizeMode="contain"
                   />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => alert(item.tenhang)}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RepairProduct', {
+                      id: item.id,
+                      tensanpham: item.tenhang,
+                      soluong: item.soluong,
+                      gia: item.dongia,
+                      anh: item.anh,
+                      mota: item.mota,
+                      iddanhmuc: item.iddanhmuc,
+                    });
+                  }}>
                   <Text>{item.tenhang}</Text>
                 </TouchableOpacity>
               </View>

@@ -13,12 +13,10 @@ import {
   FlatList,
   Button,
 } from 'react-native';
-
-import image from '../../constant/images';
-import {images, icons, fontsize, colors, CallURL} from '../../constant';
+import {images, icons, fontsize, colors, CallURL} from '../constant';
 import Icons from 'react-native-vector-icons/FontAwesome5';
-import ProductItem from './ProductItem';
-import Product2Item from './Product2Item';
+import ProductItem from './ProductLists/ProductItem';
+import Product2Item from './ProductLists/Product2Item';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   NavigationContainer,
@@ -26,24 +24,24 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Taskbar from '../Taskbar';
+import Taskbar from './Taskbar';
 import axios from 'axios';
-function ProductList(props) {
+function Search(props) {
   const {navigation} = props;
   const route = useRoute();
-  const idloaisp = route.params?.idloaisp;
-  const [noidungtim, setnoidungtim] = useState();
+  const noidungtim = route.params?.noidungtim;
+  const [ndtmoi, setndtmoi] = useState();
   const [data, setdata] = useState([]);
 
   useEffect(() => {
-    calGetUrl();
+    calGetUrl(noidungtim);
   }, [data]);
 
-  const calGetUrl = async () => {
+  const calGetUrl = async noidungtim => {
     axios
-      .get(CallURL.URL_sptheodm, {
+      .get(CallURL.URL_gettimkiem, {
         params: {
-          idloaisp: idloaisp,
+          noidungtim: noidungtim,
         },
       })
 
@@ -81,7 +79,7 @@ function ProductList(props) {
         }}>
         <TextInput
           onChangeText={text => {
-            setnoidungtim(text);
+            setndtmoi(text);
           }}
           placeholder="Search by name"
           placeholderTextColor={colors.placeholder}
@@ -105,7 +103,7 @@ function ProductList(props) {
           }}
           onPress={() => {
             navigation.navigate('Search', {
-              noidungtim: noidungtim,
+              noidungtim: ndtmoi,
             });
           }}>
           <Icons name="search" size={30} color="gray" />
@@ -130,4 +128,4 @@ function ProductList(props) {
     </View>
   );
 }
-export default ProductList;
+export default Search;

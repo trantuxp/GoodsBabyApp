@@ -5,15 +5,25 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
+  Image,
 } from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
-import {CallURL, colors, fontsize} from '../constant';
+import {CallURL, colors, fontsize, images} from '../constant';
 import ComboBox from 'react-native-combobox';
 import axios from 'axios';
-import TabBottom from '../admin/TabBottom';
+import Taskbar from './Taskbar';
+import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function ManagerShop() {
-  const [tenshop, settenshop] = useState();
+export default function Userinfo() {
+  const [iduser, setiduser] = useState('');
+  useEffect(() => {
+    AsyncStorage.getItem('id').then(result => {
+      setiduser(result);
+    });
+  }, [AsyncStorage.getItem('id')]);
+  const navigation = useNavigation();
+  const [tendn, settendn] = useState();
   const [diachi, setdiachi] = useState();
   const [sodt, setsodt] = useState();
   const [email, setemail] = useState();
@@ -21,16 +31,21 @@ export default function ManagerShop() {
   const [data, setdata] = useState([]);
 
   useEffect(() => {
-    calGetUrl();
+    calGetUrl(iduser);
   }, [data]);
 
-  const calGetUrl = async () => {
+  const calGetUrl = async id => {
     axios
-      .get(CallURL.URL_getch)
+      .get(CallURL.URL_gettkid, {
+        params: {
+          id: id,
+        },
+      })
 
       .then(res => {
         // console.log(typeof res.data.data);
         setdata(res.data.data);
+
         // console.log(JSON.stringify(res.data.data));
       })
       .catch(function (error) {
@@ -64,28 +79,99 @@ export default function ManagerShop() {
       });
   };
   // data.map(item => {
-  //   settenshop(item.tenshop.toString());
-  //   setdiachi(item.diachi.toString());
-  //   setsodt(item.sodt.toString());
-  //   setemail(item.email.toString());
+  //   settenshop(item.tenshop);
+  //   setdiachi(item.diachi);
+  //   setsodt(item.sodt);
+  //   setemail(item.email);
   // });
 
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
-      <View style={{flex: 20, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{fontSize: fontsize.h3, color: colors.black}}>
-          Add Product Form
-        </Text>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <Taskbar navigation={navigation} title="Signin" user="anhtu" />
       </View>
-      <View style={{flex: 50}}>
+      <View
+        style={{
+          flex: 15,
+          alignItems: 'center',
+          marginTop: 10,
+          justifyContent: 'center',
+        }}>
+        <View
+          style={{
+            flex: 20,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            marginLeft: 10,
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('UserInfo');
+            }}>
+            <Image
+              source={images.account}
+              style={{
+                width: 70,
+                height: 70,
+                alignSelf: 'center',
+                borderWidth: 1,
+                tintColor: colors.success,
+                borderRadius: 20,
+                marginEnd: 10,
+              }}
+            />
+            <View>
+              <Text
+                style={{
+                  marginLeft: 15,
+                  color: colors.success,
+                  fontWeight: 'bold',
+                }}>
+                Hồ sơ
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{marginLeft: 30}}
+            onPress={() => {
+              navigation.navigate('Delivering');
+            }}>
+            <Image
+              source={images.order}
+              style={{
+                width: 70,
+                height: 70,
+                // tintColor: colors.success,
+                alignSelf: 'center',
+                borderWidth: 1,
+                borderRadius: 20,
+                marginEnd: 10,
+              }}
+            />
+            <View>
+              <Text style={{color: colors.inactive}}>Đơn hàng của bạn</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={{flex: 55, marginTop: 10}}>
         <FlatList
           data={data}
           renderItem={({item}) => (
             <View style={{flex: 1, padding: 20}}>
               <View
                 style={{
-                  flex: 10,
-                }}></View>
+                  flex: 20,
+                  alignItems: 'center',
+                  marginBottom: 30,
+                }}>
+                <Text style={{fontSize: fontsize.h3, color: colors.black}}>
+                  Hồ sơ cá nhân
+                </Text>
+              </View>
 
               <View
                 style={{
@@ -96,19 +182,19 @@ export default function ManagerShop() {
                 }}>
                 <View style={{flex: 30}}>
                   <Text style={{fontSize: fontsize.h5, color: colors.black}}>
-                    Tên Shop:
+                    Tên :
                   </Text>
                 </View>
                 <View style={{flex: 70}}>
                   <TextInput
                     onChangeText={text => {
-                      settenshop(item.tenshop.toString());
-                      setdiachi(item.diachi.toString());
-                      setsodt(item.sodt.toString());
-                      setemail(item.email.toString());
-                      settenshop(text);
+                      settendn(item.tendn);
+                      setdiachi(item.diachi);
+                      setsodt(item.sodt);
+                      setemail(item.email);
+                      settendn(text);
                     }}
-                    defaultValue={item.tenshop.toString()}
+                    defaultValue={item.tendn}
                     style={{borderWidth: 1, borderRadius: 40, height: '80%'}}
                     placeholder="Đồ chơi trẻ em"
                     placeholderTextColor={colors.placeholder}
@@ -124,7 +210,7 @@ export default function ManagerShop() {
                 }}>
                 <View style={{flex: 30}}>
                   <Text style={{fontSize: fontsize.h5, color: colors.black}}>
-                    Địa chỉ Shop:
+                    Địa chỉ:
                   </Text>
                 </View>
                 <View style={{flex: 70}}>
@@ -132,7 +218,7 @@ export default function ManagerShop() {
                     onChangeText={text => {
                       setdiachi(text);
                     }}
-                    defaultValue={item.diachi.toString()}
+                    defaultValue={item.email}
                     style={{borderWidth: 1, borderRadius: 40, height: '80%'}}
                     placeholderTextColor={colors.placeholder}
                   />
@@ -155,7 +241,7 @@ export default function ManagerShop() {
                     onChangeText={text => {
                       setsodt(text);
                     }}
-                    defaultValue={item.sodt.toString()}
+                    defaultValue={item.sodt}
                     style={{borderWidth: 1, borderRadius: 40, height: '80%'}}
                     placeholderTextColor={colors.placeholder}
                   />
@@ -178,7 +264,7 @@ export default function ManagerShop() {
                     onChangeText={text => {
                       setemail(text);
                     }}
-                    defaultValue={item.email.toString()}
+                    defaultValue={item.email}
                     style={{borderWidth: 1, borderRadius: 40, height: '80%'}}
                     placeholder="number"
                     placeholderTextColor={colors.placeholder}
@@ -197,14 +283,13 @@ export default function ManagerShop() {
         />
       </View>
 
-      <View style={{flex: 20}}>
+      <View style={{flex: 10, alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity
           onPress={() => {
-            alert(tenshop + diachi + sodt + email);
-            UpdateShop(tenshop, diachi, sodt, email);
+            alert(tendn + diachi + sodt + email);
           }}
           style={{
-            width: '100%',
+            width: '30%',
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: colors.success,
@@ -223,9 +308,7 @@ export default function ManagerShop() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{flex: 10}}>
-        <TabBottom />
-      </View>
+      <View style={{flex: 10}}></View>
     </View>
   );
 }

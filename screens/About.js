@@ -103,6 +103,8 @@ export default function About() {
                 style={{
                   fontSize: fontsize.h4,
                   color: colors.black,
+                  height: 60,
+                  width: 200,
                 }}>
                 Địa chỉ shop: 26 Huỳnh Văn Nghệ, Hòa Hải, Ngũ Hành Sơn
               </Text>

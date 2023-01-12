@@ -91,7 +91,7 @@ export default function Taskbar(props) {
             <TouchableOpacity
               style={{marginRight: 5}}
               onPress={() => {
-                // navigation.navigate('MystackAdmin');
+                navigation.navigate('UserInfo');
               }}>
               <Text style={styles.Text}>{username}</Text>
             </TouchableOpacity>

@@ -13,12 +13,12 @@ import ComboBox from 'react-native-combobox';
 import axios from 'axios';
 import TabBottom from '../admin/TabBottom';
 import {useNavigation} from '@react-navigation/native';
-export default function ManagerOrder() {
+export default function CancelOrder() {
   navigation = useNavigation();
   const [data, setdata] = useState([]);
 
   useEffect(() => {
-    calGetUrl(1);
+    calGetUrl(0);
   }, [data]);
   const calGetUrl = async trangthai => {
     axios
@@ -64,24 +64,6 @@ export default function ManagerOrder() {
         // always executed
       });
   };
-
-  const DeleteOrder = async id => {
-    axios
-      .get(CallURL.URL_huydh, {
-        params: {
-          id: id,
-        },
-      })
-
-      .then(res => {})
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-  };
   return (
     <View
       style={{
@@ -100,7 +82,7 @@ export default function ManagerOrder() {
             navigation.navigate('ManagerOrder');
           }}>
           <Image
-            source={images.duyetmau}
+            source={images.duyet}
             style={{
               width: 70,
               height: 70,
@@ -111,9 +93,7 @@ export default function ManagerOrder() {
             }}
           />
           <View>
-            <Text style={{color: colors.success, fontWeight: 'bold'}}>
-              Duyệt đơn
-            </Text>
+            <Text style={{color: colors.inactive}}>Duyệt đơn</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -168,10 +148,13 @@ export default function ManagerOrder() {
               borderWidth: 1,
               borderRadius: 20,
               marginEnd: 10,
+              tintColor: colors.success,
             }}
           />
           <View style={{marginLeft: 10}}>
-            <Text style={{color: colors.inactive}}>Hủy đơn</Text>
+            <Text style={{color: colors.success, fontWeight: 'bold'}}>
+              Hủy đơn
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -255,56 +238,8 @@ export default function ManagerOrder() {
                     backgroundColor: '#f5f5f5',
                   }}>
                   <Text style={{marginRight: 10, fontWeight: 'bold'}}>
-                    Tình Trạng: Chờ xác nhận
+                    Tình Trạng: Đã hủy hàng
                   </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      DeleteOrder(item.id);
-                    }}
-                    style={{
-                      width: '20%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: colors.alert,
-                      borderRadius: 40,
-                      borderColor: colors.white,
-                      borderWidth: 1,
-                      height: 40,
-                      borderRadius: 10,
-                      marginHorizontal: 10,
-                    }}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontSize: fontsize.h4,
-                      }}>
-                      Hủy đơn
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {
-                      // alert(item.id + item.trangthai);
-                      UpdateOrder(item.id, item.trangthai);
-                    }}
-                    style={{
-                      width: '20%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: colors.success,
-                      borderRadius: 40,
-                      borderColor: colors.white,
-                      borderWidth: 1,
-                      height: 40,
-                      borderRadius: 10,
-                    }}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontSize: fontsize.h4,
-                      }}>
-                      Xác nhận
-                    </Text>
-                  </TouchableOpacity>
                 </View>
               </View>
             )}

@@ -12,6 +12,9 @@ import Payment from './Payment';
 import About from './About';
 import News from './News';
 import NewsList from './NewsList';
+import DetailNews from './DetailNews';
+import UserInfo from './UserInfo';
+import Search from './Search';
 export {
   Signin,
   Register,
@@ -27,4 +30,7 @@ export {
   About,
   News,
   NewsList,
+  DetailNews,
+  UserInfo,
+  Search,
 };

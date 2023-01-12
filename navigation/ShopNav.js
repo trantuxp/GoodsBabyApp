@@ -18,6 +18,9 @@ import {
   ProductList,
   News,
   NewsList,
+  DetailNews,
+  UserInfo,
+  Search,
 } from '../screens';
 import {
   Getapi_Flatlist,
@@ -27,6 +30,10 @@ import {
   ManagerShop,
   ManagerOrder,
   AddProduct,
+  RepairProduct,
+  Delivered,
+  Delivering,
+  CancelOrder,
 } from '../admin';
 const Drawer = createDrawerNavigator();
 
@@ -42,6 +49,9 @@ const MystackSignin = () => {
       <Stack.Screen name="News" component={News} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="NewsList" component={NewsList} />
+      <Stack.Screen name="DetailNews" component={DetailNews} />
+      <Stack.Screen name="UserInfo" component={UserInfo} />
+      <Stack.Screen name="Search" component={Search} />
     </Stack.Navigator>
   );
 };
@@ -58,6 +68,9 @@ const MystackRegister = () => {
       <Stack.Screen name="News" component={News} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="NewsList" component={NewsList} />
+      <Stack.Screen name="DetailNews" component={DetailNews} />
+      <Stack.Screen name="UserInfo" component={UserInfo} />
+      <Stack.Screen name="Search" component={Search} />
     </Stack.Navigator>
   );
 };
@@ -78,6 +91,10 @@ const MystackAdmin = () => {
       <Stack.Screen name="ManagerOrder" component={ManagerOrder} />
       <Stack.Screen name="ManagerShop" component={ManagerShop} />
       <Stack.Screen name="AddProduct" component={AddProduct} />
+      <Stack.Screen name="RepairProduct" component={RepairProduct} />
+      <Stack.Screen name="Delivered" component={Delivered} />
+      <Stack.Screen name="Delivering" component={Delivering} />
+      <Stack.Screen name="CancelOrder" component={CancelOrder} />
     </Stack.Navigator>
   );
 };
@@ -106,6 +123,9 @@ export default function MainNavigator() {
         <Drawer.Screen name="ProductList" component={ProductList} />
         <Drawer.Screen name="News" component={News} />
         <Drawer.Screen name="NewsList" component={NewsList} />
+        <Drawer.Screen name="DetailNews" component={DetailNews} />
+        <Drawer.Screen name="UserInfo" component={UserInfo} />
+        <Drawer.Screen name="Search" component={Search} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

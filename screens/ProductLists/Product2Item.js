@@ -39,7 +39,23 @@ function Product2Item(props) {
   const navigation = props.navigation;
 
   return (
-    <View style={{width: '48%', marginHorizontal: '1%'}}>
+    <View
+      style={{
+        overflow: 'hidden',
+        paddingBottom: 5,
+        width: '48%',
+        marginHorizontal: '1%',
+        marginTop: 10,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 1, height: 1},
+        shadowOpacity: 0.29,
+        shadowRadius: 3,
+        elevation: 7,
+        marginBottom: 10,
+      }}>
+      <View />
+
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('DetailProduct', {
@@ -56,18 +72,18 @@ function Product2Item(props) {
         style={{
           height: '100%',
           flex: 1,
-          borderWidth: 1,
-          borderColor: 'white',
           marginStart: 5,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
         <Image
           style={{
+            marginTop: 10,
             width: 120,
             height: 120,
             resizeMode: 'cover',
             borderRadius: 10,
+            marginBottom: 10,
           }}
           source={{
             uri: anh,
@@ -87,7 +103,7 @@ function Product2Item(props) {
             fontSize: fontsize.h4,
             fontWeight: 'bold',
           }}>
-          {dongia}
+          {dongia}đ
         </Text>
       </TouchableOpacity>
     </View>

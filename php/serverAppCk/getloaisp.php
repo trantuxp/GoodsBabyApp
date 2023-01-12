@@ -1,8 +1,11 @@
 <?php  
 	include "connect.php";
 	?>
-	
 	<?php
+ $localIP = getHostByName(php_uname('n'));
+ echo $localIP;
+?>	<?php
+
 	$query = "SELECT * FROM danhmuc";
 	$data = mysqli_query($connect,$query);
 	$mangloaisp= array();

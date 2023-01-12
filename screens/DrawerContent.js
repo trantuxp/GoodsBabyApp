@@ -119,9 +119,7 @@ export default function DrawerContent(props) {
             )}
             label="News"
             onPress={() => {
-              props.navigation.navigate('News', {
-                name: 'tu',
-              });
+              props.navigation.navigate('News');
             }}
           />
         </View>
@@ -138,9 +136,7 @@ export default function DrawerContent(props) {
             )}
             label="About"
             onPress={() => {
-              props.navigation.navigate('About', {
-                name: 'tu',
-              });
+              props.navigation.navigate('About');
             }}
           />
         </View>
