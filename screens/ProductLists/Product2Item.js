@@ -94,6 +94,7 @@ function Product2Item(props) {
             color: 'black',
             fontSize: fontsize.h4,
             fontWeight: 'bold',
+            textAlign: 'center',
           }}>
           {tenhang}
         </Text>

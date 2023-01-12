@@ -12,6 +12,7 @@ import {colors, fontsize, images} from '../constant';
 import Taskbar from './Taskbar';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from '@react-navigation/native';
+import TabBottomUser from './TabBottomUser';
 export default function About() {
   const navigation = useNavigation();
   return (
@@ -34,7 +35,7 @@ export default function About() {
             margin: 20,
             top: 30,
             marginBottom: 30,
-            flex: 90,
+            flex: 80,
             justifyContent: 'center',
           }}>
           <Text
@@ -170,6 +171,12 @@ export default function About() {
               </Text>
             </View>
           </KeyboardAwareScrollView>
+        </View>
+        <View
+          style={{
+            flex: 10,
+          }}>
+          <TabBottomUser></TabBottomUser>
         </View>
       </ImageBackground>
     </View>

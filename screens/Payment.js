@@ -10,6 +10,7 @@ import {colors, fontsize, images, CallURL} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import axios from 'axios';
+import TabBottomUser from './TabBottomUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Payment(props) {
   const navigation = useNavigation();
@@ -36,8 +37,6 @@ export default function Payment(props) {
     tongsanpham,
     tongtien,
   ) => {
-    // 👇️ passing function to setData method
-
     axios
       // them hang hoa
       .get(CallURL.URL_themdh, {
@@ -62,20 +61,6 @@ export default function Payment(props) {
       .finally(function () {
         // always executed
       });
-
-    // setdata(prevState => {
-    //   const newState = prevState.map(obj => {
-    //     // 👇️ if id equals 2, update country property
-    //     if (obj.id == idcart) {
-    //       return {...obj, soluongmua: soluongmua};
-    //     }
-
-    //     // 👇️ otherwise return object as is
-    //     return obj;
-    //   });
-
-    //   return newState;
-    // });
   };
   return (
     <View
@@ -116,8 +101,6 @@ export default function Payment(props) {
             </Text>
             <TextInput
               onChangeText={text => {
-                // set errormail with enough condition yet?
-
                 settenuser(text);
               }}
               placeholder="Nguyễn Văn A"
@@ -147,8 +130,6 @@ export default function Payment(props) {
             </Text>
             <TextInput
               onChangeText={text => {
-                // set errormail with enough condition yet?
-
                 setdiachi(text);
               }}
               placeholder="số nhà - đường - Phường - Thành Phố"
@@ -244,8 +225,7 @@ export default function Payment(props) {
               result_soluongsp,
               result,
             );
-            alert(result + result_soluongsp + iduser);
-            alert(tenuser + diachi + sodt + email);
+
             navigation.navigate('Homescreen');
           }}
           title="LOGIN"
@@ -284,6 +264,12 @@ export default function Payment(props) {
             Trở về Trang chủ
           </Text>
         </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );

@@ -24,4 +24,5 @@ export default {
   dagiao: require('../assets/dagiao.png'),
   dagiaomau: require('../assets/dagiaomau.png'),
   huydon: require('../assets/huydon.jpg'),
+  carticon: require('../assets/carticon.jpg'),
 };

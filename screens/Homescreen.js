@@ -12,7 +12,7 @@ import Taskbar from './Taskbar';
 import axios from 'axios';
 import Product2Item from './ProductLists/Product2Item';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-
+import TabBottomUser from './TabBottomUser';
 export default function Homescreen(props) {
   const [data, setdata] = useState([]);
 
@@ -25,12 +25,9 @@ export default function Homescreen(props) {
       .get(CallURL.URL_spmoinhat)
 
       .then(res => {
-        // console.log(typeof res.data.data);
         setdata(res.data.data);
-        // console.log(JSON.stringify(res.data.data));
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       })
       .finally(function () {
@@ -63,7 +60,7 @@ export default function Homescreen(props) {
         }}>
         <Slide></Slide>
       </View>
-      <View style={{flex: 60}}>
+      <View style={{flex: 50}}>
         <View
           style={{
             flex: 10,
@@ -92,25 +89,12 @@ export default function Homescreen(props) {
             />
           </View>
         </View>
-        {/* {username != null
-          ? console.log(`mail: ${username},password: ${password}`)
-          : null} */}
-        {/* //dang xuat */}
-        {/* <Text>Username: {username}</Text>
-        <Text>Password: {password}</Text>*/}
-        {/* <TouchableOpacity
-          style={{
-            backgroundColor: 'gray',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '50%',
-          }}
-          onPress={() => {
-            AsyncStorage.clear();
-            navigation.replace('Signin');
-          }}>
-          <Text>Logout</Text>
-        </TouchableOpacity> */}
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </SafeAreaView>
   );

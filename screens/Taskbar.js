@@ -30,20 +30,6 @@ export default function Taskbar(props) {
           alignItems: 'center',
           flexDirection: 'row',
         }}>
-        {/* <TouchableOpacity
-          onPress={() => {
-            alert('hi');
-          }}>
-          <Image
-            source={images.back}
-            style={{
-              width: 40,
-              height: 40,
-              alignItems: 'center',
-              tintColor: colors.white,
-            }}
-          />
-        </TouchableOpacity> */}
         <TouchableOpacity
           style={{marginLeft: 5}}
           onPress={() => {
@@ -136,28 +122,6 @@ export default function Taskbar(props) {
           </TouchableOpacity>
         </View>
       )}
-
-      <View
-        style={{
-          flex: 20,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Cart');
-          }}>
-          <Image
-            source={images.cart}
-            style={{
-              width: 30,
-              height: 30,
-              alignItems: 'center',
-              tintColor: colors.white,
-            }}
-          />
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

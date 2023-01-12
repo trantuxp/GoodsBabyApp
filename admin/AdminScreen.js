@@ -57,7 +57,7 @@ export default function AdminScreen(props) {
                       color: colors.black,
                       fontSize: fontsize.h5,
                     }}>
-                    360
+                    200
                   </Text>
                 </View>
               </View>
@@ -117,7 +117,7 @@ export default function AdminScreen(props) {
                       color: colors.black,
                       fontSize: fontsize.h5,
                     }}>
-                    15
+                    16
                   </Text>
                 </View>
               </View>
@@ -241,7 +241,7 @@ export default function AdminScreen(props) {
                       color: colors.black,
                       fontSize: fontsize.h5,
                     }}>
-                    10.000.000
+                    3.700.000
                   </Text>
                 </View>
               </View>

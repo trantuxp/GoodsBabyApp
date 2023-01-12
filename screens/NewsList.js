@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {images, colors, icons, fontsize} from '../constant';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
+import TabBottomUser from './TabBottomUser';
 function NewsList(props) {
   const {id, tentt, mota, anh} = props.products; //destructuring an object
   const navigation = props.navigation;

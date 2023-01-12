@@ -95,35 +95,7 @@ export default function DrawerContent(props) {
           </View>
         </DrawerContentScrollView>
       </View>
-      {/* <View
-        style={{
-          height: 1,
-          borderWidth: 1,
-          borderColor: 'black',
-          width: '80%',
-          justifyContent: 'center',
-          alignSelf: 'center',
-          marginHorizontal: 10,
-          marginVertical: 10,
-        }}
-      /> */}
-      <View style={{flex: 10}}>
-        <View style={styles.drawerSection}>
-          <DrawerItem
-            icon={({focused, color}) => (
-              <Image
-                source={images.news}
-                style={{height: 60, width: 60}}
-                resizeMode="contain"
-              />
-            )}
-            label="News"
-            onPress={() => {
-              props.navigation.navigate('News');
-            }}
-          />
-        </View>
-      </View>
+
       <View style={{flex: 20}}>
         <View style={styles.drawerSection}>
           <DrawerItem

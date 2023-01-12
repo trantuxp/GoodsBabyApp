@@ -14,6 +14,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import NumericInput from 'react-native-numeric-input';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import axios from 'axios';
+import TabBottomUser from './TabBottomUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Cart(props) {
   const navigation = useNavigation();
@@ -130,7 +131,7 @@ export default function Cart(props) {
       <View
         style={{
           backgroundColor: colors.white,
-          flex: 70,
+          flex: 60,
         }}>
         <FlatList
           data={data}
@@ -225,6 +226,7 @@ export default function Cart(props) {
       <View
         style={{
           flex: 20,
+          marginBottom: 10,
         }}>
         <View
           style={{
@@ -307,6 +309,12 @@ export default function Cart(props) {
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );

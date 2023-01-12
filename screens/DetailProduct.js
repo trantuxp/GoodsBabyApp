@@ -18,6 +18,7 @@ import Taskbar from './Taskbar';
 import NumericInput from 'react-native-numeric-input';
 import axios from 'axios';
 import AddProduct from '../admin/AddProduct';
+import TabBottomUser from './TabBottomUser';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function DetailProduct(props) {
   const [valueNumeric, setvalueNumeric] = useState(1);
@@ -124,7 +125,7 @@ export default function DetailProduct(props) {
         }}>
         <Taskbar navigation={navigation} title="DetailProduct" user="anhtu" />
       </View>
-      <View style={{flexDirection: 'row', flex: 40}}>
+      <View style={{flexDirection: 'row', flex: 50}}>
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <Image
             style={{
@@ -150,9 +151,10 @@ export default function DetailProduct(props) {
           <Text
             style={{
               marginVertical: 10,
-              fontSize: fontsize.h5,
+              fontSize: fontsize.h4,
               color: colors.alert,
               fontWeight: 'bold',
+              alignSelf: 'center',
             }}>
             {price} đ
           </Text>
@@ -172,10 +174,12 @@ export default function DetailProduct(props) {
               onChange={value => setvalueNumeric(value)}
             />
           </View>
-          <Text style={{marginVertical: 10}}>Số lượng còn lại: {amount} </Text>
+          <Text style={{marginVertical: 10, alignSelf: 'center'}}>
+            Số lượng còn lại: {amount}{' '}
+          </Text>
           <Button
             style={{backgroundColor: colors.primary}}
-            title="Buy"
+            title="Mua"
             onPress={() => {
               if (valueNumeric > 0) {
                 setvalueNumeric(1);
@@ -208,7 +212,7 @@ export default function DetailProduct(props) {
             }}></Button>
         </View>
       </View>
-      <View style={{flex: 50, padding: 10}}>
+      <View style={{flex: 30, padding: 10}}>
         <KeyboardAwareScrollView>
           <View
             style={{
@@ -223,6 +227,12 @@ export default function DetailProduct(props) {
             </View>
           </View>
         </KeyboardAwareScrollView>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </SafeAreaView>
   );

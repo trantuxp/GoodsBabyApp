@@ -15,6 +15,7 @@ import NewsList from './NewsList';
 import DetailNews from './DetailNews';
 import UserInfo from './UserInfo';
 import Search from './Search';
+import TabBottomUser from './TabBottomUser';
 export {
   Signin,
   Register,
@@ -33,4 +34,5 @@ export {
   DetailNews,
   UserInfo,
   Search,
+  TabBottomUser,
 };

@@ -15,10 +15,7 @@ import {colors, fontsize, CallURL} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import Taskbar from './Taskbar';
-import NumericInput from 'react-native-numeric-input';
-import axios from 'axios';
-import AddProduct from '../admin/AddProduct';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import TabBottomUser from './TabBottomUser';
 export default function DetailNews(props) {
   const [valueNumeric, setvalueNumeric] = useState(1);
   const navigation = useNavigation();
@@ -59,7 +56,7 @@ export default function DetailNews(props) {
           </Text>
         </View>
       </View>
-      <View style={{flex: 50, padding: 10}}>
+      <View style={{flex: 30, padding: 10}}>
         <KeyboardAwareScrollView>
           <View
             style={{
@@ -74,6 +71,12 @@ export default function DetailNews(props) {
             </View>
           </View>
         </KeyboardAwareScrollView>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </SafeAreaView>
   );

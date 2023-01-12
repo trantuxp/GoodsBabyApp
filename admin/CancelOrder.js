@@ -153,7 +153,7 @@ export default function CancelOrder() {
           />
           <View style={{marginLeft: 10}}>
             <Text style={{color: colors.success, fontWeight: 'bold'}}>
-              Hủy đơn
+              Đơn hàng đã hủy
             </Text>
           </View>
         </TouchableOpacity>

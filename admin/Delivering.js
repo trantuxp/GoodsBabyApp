@@ -150,7 +150,7 @@ export default function Delivering() {
             }}
           />
           <View style={{marginLeft: 10}}>
-            <Text style={{color: colors.inactive}}>Hủy đơn</Text>
+            <Text style={{color: colors.inactive}}>Đơn hàng đã hủy</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -236,30 +236,6 @@ export default function Delivering() {
                   <Text style={{marginRight: 10, fontWeight: 'bold'}}>
                     Tình Trạng: Đang giao
                   </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      DeleteOrder(item.id);
-                    }}
-                    style={{
-                      width: '20%',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: colors.alert,
-                      borderRadius: 40,
-                      borderColor: colors.white,
-                      borderWidth: 1,
-                      height: 40,
-                      borderRadius: 10,
-                      marginHorizontal: 10,
-                    }}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontSize: fontsize.h4,
-                      }}>
-                      Hủy đơn
-                    </Text>
-                  </TouchableOpacity>
                 </View>
               </View>
             )}

@@ -25,6 +25,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Taskbar from './Taskbar';
 import axios from 'axios';
+import TabBottomUser from './TabBottomUser';
 
 function Register(props) {
   //state for validating
@@ -328,6 +329,12 @@ function Register(props) {
             </TouchableOpacity>
           </View>
         )}
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );

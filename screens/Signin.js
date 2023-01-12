@@ -18,7 +18,7 @@ import Taskbar from './Taskbar';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Item} from 'react-native-paper/lib/typescript/components/Drawer/Drawer';
-
+import TabBottomUser from './TabBottomUser';
 function Signin(props) {
   //state for validating
   const [errorEmail, seterrorEmail] = useState('');
@@ -173,19 +173,17 @@ function Signin(props) {
                 fontSize: fontsize.h5,
                 color: colors.primary,
               }}>
-              Email:
+              Tên đăng nhập:
             </Text>
             <TextInput
               onChangeText={text => {
                 // set errormail with enough condition yet?
                 seterrorEmail(
-                  isValiEmail(text) == true
-                    ? ''
-                    : 'Email not in correct format',
+                  isValiEmail(text) == true ? '' : 'Chưa nhập tên đăng nhập',
                 );
                 setemail(text);
               }}
-              placeholder="example@gmail.com"
+              placeholder=""
               placeholderTextColor={colors.placeholder}
             />
 
@@ -216,14 +214,14 @@ function Signin(props) {
                 fontSize: fontsize.h5,
                 color: colors.primary,
               }}>
-              Password:
+              Mật khẩu:
             </Text>
             <TextInput
               onChangeText={text => {
                 seterrorPassword(
                   isValiPassword(text) == true
                     ? ''
-                    : 'Password must be at least 3 characters',
+                    : 'Mật khẩu phải hơn 2 ký tự',
                 );
                 setpassword(text);
               }}
@@ -231,7 +229,7 @@ function Signin(props) {
                 marginBottom: 5,
               }}
               secureTextEntry={true}
-              placeholder="Enter your Passworđ"
+              placeholder=""
               placeholderTextColor={colors.placeholder}
             />
             <View
@@ -255,7 +253,7 @@ function Signin(props) {
         {KeyboardIsShown == false && (
           <View
             style={{
-              flex: 60,
+              flex: 50,
               marginHorizontal: 20,
               padding: 20,
             }}>
@@ -318,6 +316,12 @@ function Signin(props) {
             </TouchableOpacity>
           </View>
         )}
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );

@@ -26,6 +26,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Taskbar from './Taskbar';
 import axios from 'axios';
+import TabBottomUser from './TabBottomUser';
 function Search(props) {
   const {navigation} = props;
   const route = useRoute();
@@ -113,7 +114,7 @@ function Search(props) {
       <View
         style={{
           top: 20,
-          flex: 80,
+          flex: 70,
         }}>
         <View style={{flex: 80}}>
           <FlatList
@@ -124,6 +125,12 @@ function Search(props) {
             )}
           />
         </View>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );

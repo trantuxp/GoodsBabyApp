@@ -171,7 +171,7 @@ export default function ManagerOrder() {
             }}
           />
           <View style={{marginLeft: 10}}>
-            <Text style={{color: colors.inactive}}>Hủy đơn</Text>
+            <Text style={{color: colors.inactive}}>Đơn hàng đã hủy </Text>
           </View>
         </TouchableOpacity>
       </View>

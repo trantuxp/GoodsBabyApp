@@ -14,7 +14,7 @@ import axios from 'axios';
 import Taskbar from './Taskbar';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import TabBottomUser from './TabBottomUser';
 export default function Userinfo() {
   const [iduser, setiduser] = useState('');
   useEffect(() => {
@@ -308,7 +308,9 @@ export default function Userinfo() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{flex: 10}}></View>
+      <View style={{flex: 10}}>
+        <TabBottomUser></TabBottomUser>
+      </View>
     </View>
   );
 }

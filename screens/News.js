@@ -19,6 +19,7 @@ import Icons from 'react-native-vector-icons/FontAwesome5';
 import axios from 'axios';
 import Taskbar from './Taskbar';
 import NewsList from './NewsList';
+import TabBottomUser from './TabBottomUser';
 function News(props) {
   const [data, setdata] = useState([]);
 
@@ -95,7 +96,7 @@ function News(props) {
       <View
         style={{
           top: 20,
-          flex: 80,
+          flex: 70,
         }}>
         <View style={{flex: 80}}>
           <FlatList
@@ -106,6 +107,12 @@ function News(props) {
             )}
           />
         </View>
+      </View>
+      <View
+        style={{
+          flex: 10,
+        }}>
+        <TabBottomUser></TabBottomUser>
       </View>
     </View>
   );
