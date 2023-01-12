@@ -40,14 +40,6 @@ function Signin(props) {
   const [dataAdmin, setdataAdmin] = useState([]);
 
   useEffect(() => {
-    Keyboard.addListener('keyboardDidShow', () => {
-      setKeyboardIsShown(true);
-    });
-    Keyboard.addListener('keyboardDidHide', () => {
-      setKeyboardIsShown(false);
-    });
-  });
-  useEffect(() => {
     CallGetUser();
   }, [dataUser]);
 
@@ -155,7 +147,7 @@ function Signin(props) {
             color: colors.primary,
             fontWeight: 'bold',
           }}>
-          LOGIN
+          ĐĂNG NHẬP
         </Text>
       </View>
       <View
@@ -260,12 +252,14 @@ function Signin(props) {
             <TouchableOpacity
               disabled={isValidationOK() == false}
               onPress={() => {
+                let success = false;
                 dataUser.map(Item => {
                   if (email == Item.tendn && password == Item.matkhau) {
                     AsyncStorage.setItem('username', Item.tendn);
                     AsyncStorage.setItem('password', Item.matkhau);
                     AsyncStorage.setItem('id', Item.id);
                     navigation.navigate('Homescreen');
+                    success = true;
                   }
                 });
                 dataAdmin.map(Item => {
@@ -274,8 +268,12 @@ function Signin(props) {
                     AsyncStorage.setItem('password', Item.matkhau);
                     AsyncStorage.setItem('id', Item.id);
                     navigation.navigate('MystackAdmin');
+                    success = true;
                   }
                 });
+                if (success == false) {
+                  alert('Tài khoản hoặc mật khẩu sai');
+                }
               }}
               title="LOGIN"
               style={{
@@ -297,7 +295,7 @@ function Signin(props) {
                   color: 'white',
                   fontSize: fontsize.h5,
                 }}>
-                LOGIN
+                Đăng nhập
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -311,7 +309,7 @@ function Signin(props) {
                   fontSize: fontsize.h5,
                   alignSelf: 'center',
                 }}>
-                New user? Register now
+                Tạo tài khoản mới ngay?
               </Text>
             </TouchableOpacity>
           </View>

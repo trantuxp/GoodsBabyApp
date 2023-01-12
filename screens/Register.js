@@ -56,6 +56,30 @@ function Register(props) {
     });
   });
 
+  const [dataUser, setdataUser] = useState([]);
+
+  useEffect(() => {
+    CallGetUser();
+  }, [dataUser]);
+
+  const CallGetUser = async () => {
+    axios
+      .get(CallURL.URL_getuser)
+
+      .then(res => {
+        // console.log(typeof res.data.data);
+        setdataUser(res.data.data);
+        // console.log(JSON.stringify(res.data.data));
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  };
+
   const calladdAccount = async (tendn, matkhau) => {
     axios
       // them hang hoa
@@ -128,7 +152,7 @@ function Register(props) {
             fontSize: fontsize.h2,
             fontWeight: 'bold',
           }}>
-          REGISTER
+          ĐĂNG KÝ
         </Text>
       </View>
       <View
@@ -147,18 +171,16 @@ function Register(props) {
                 fontSize: fontsize.h5,
                 color: colors.primary,
               }}>
-              Email:
+              Tên đăng nhập:
             </Text>
             <TextInput
               onChangeText={text => {
                 seterrorEmail(
-                  isValiEmail(text) == true
-                    ? ''
-                    : 'Email not in correct format',
+                  isValiEmail(text) == true ? '' : 'Chưa nhập tên đăng nhập ',
                 );
                 setemail(text);
               }}
-              placeholder="example@gmail.com"
+              placeholder=""
               placeholderTextColor={colors.placeholder}
             />
 
@@ -189,14 +211,14 @@ function Register(props) {
                 fontSize: fontsize.h5,
                 color: colors.primary,
               }}>
-              Password:
+              Mật khẩu:
             </Text>
             <TextInput
               onChangeText={text => {
                 seterrorPassword(
                   isValiPassword(text) == true
                     ? ''
-                    : 'Password must be at least 3 characters',
+                    : 'Mật khẩu phải hơn 2 ký tự ',
                 );
                 setpassword(text);
               }}
@@ -204,7 +226,7 @@ function Register(props) {
                 marginBottom: 5,
               }}
               secureTextEntry={true}
-              placeholder="Enter your Passworđ"
+              placeholder=""
               placeholderTextColor={colors.placeholder}
             />
             <View
@@ -233,7 +255,7 @@ function Register(props) {
                 fontSize: fontsize.h5,
                 color: colors.primary,
               }}>
-              Repasswprd:
+              Nhập lại mật khẩu:
             </Text>
             <TextInput
               style={{}}
@@ -241,12 +263,12 @@ function Register(props) {
                 seterrorRePassword(
                   isValiRePassword(text, password) == true
                     ? ''
-                    : 'Confirm password is not same as password ',
+                    : 'Mật khẩu không trùng khớp',
                 );
                 setrepassword(text);
               }}
               secureTextEntry={true}
-              placeholder="Enter Your password again"
+              placeholder=""
               placeholderTextColor={colors.placeholder}
             />
             <View
@@ -310,7 +332,7 @@ function Register(props) {
                   color: 'white',
                   fontSize: fontsize.h5,
                 }}>
-                REGISTER
+                ĐĂNG KÝ
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -324,7 +346,7 @@ function Register(props) {
                   fontSize: fontsize.h5,
                   alignSelf: 'center',
                 }}>
-                You have a Account?
+                Bạn đã có tài khoản?
               </Text>
             </TouchableOpacity>
           </View>

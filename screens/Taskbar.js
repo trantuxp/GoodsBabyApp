@@ -30,6 +30,26 @@ export default function Taskbar(props) {
           alignItems: 'center',
           flexDirection: 'row',
         }}>
+        {title != 'Home' ? (
+          <TouchableOpacity
+            style={{marginLeft: 5}}
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Image
+              source={images.back}
+              style={{
+                width: 40,
+                height: 40,
+                tintColor: colors.white,
+                alignItems: 'center',
+              }}
+            />
+          </TouchableOpacity>
+        ) : (
+          <View></View>
+        )}
+
         <TouchableOpacity
           style={{marginLeft: 5}}
           onPress={() => {

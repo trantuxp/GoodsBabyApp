@@ -73,50 +73,11 @@ function ProductList(props) {
         }}>
         <Taskbar navigation={navigation} title="Danh mục" />
       </View>
-      <View
-        style={{
-          flex: 10,
-          flexDirection: 'row',
-          top: 15,
-          marginHorizontal: 10,
-        }}>
-        <TextInput
-          onChangeText={text => {
-            setnoidungtim(text);
-          }}
-          placeholder="Search by name"
-          placeholderTextColor={colors.placeholder}
-          style={{
-            backgroundColor: 'white',
-            height: 40,
-            flex: 1,
-            borderRadius: 20,
-            borderWidth: 1,
-            borderColor: 'gray',
-
-            alginItem: 'center',
-            justifyContent: 'center',
-          }}
-        />
-        <TouchableOpacity
-          style={{
-            position: 'absolute',
-            top: 5,
-            left: '85%',
-          }}
-          onPress={() => {
-            navigation.navigate('Search', {
-              noidungtim: noidungtim,
-            });
-          }}>
-          <Icons name="search" size={30} color="gray" />
-        </TouchableOpacity>
-      </View>
 
       <View
         style={{
           top: 20,
-          flex: 70,
+          flex: 80,
         }}>
         <View style={{flex: 80}}>
           <FlatList

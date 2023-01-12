@@ -1,4 +1,4 @@
-import {Text, StyleSheet, View, FlatList} from 'react-native';
+import {Text, StyleSheet, View, FlatList, TextInput, Icons} from 'react-native';
 import React, {Component, useState, useEffect} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -60,7 +60,8 @@ export default function Homescreen(props) {
         }}>
         <Slide></Slide>
       </View>
-      <View style={{flex: 50}}>
+
+      <View style={{flex: 40}}>
         <View
           style={{
             flex: 10,

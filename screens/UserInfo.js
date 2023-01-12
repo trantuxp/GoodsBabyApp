@@ -15,6 +15,7 @@ import Taskbar from './Taskbar';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TabBottomUser from './TabBottomUser';
+
 export default function Userinfo() {
   const [iduser, setiduser] = useState('');
   useEffect(() => {
@@ -56,11 +57,12 @@ export default function Userinfo() {
         // always executed
       });
   };
-  const UpdateShop = async (tenshop, diachi, sodt, email) => {
+  const UpdateUser = async (id, tendn, diachi, sodt, email) => {
     axios
-      .get(CallURL.URL_suach, {
+      .get(CallURL.URL_suatk, {
         params: {
-          tenshop: tenshop,
+          id: id,
+          tendn: tendn,
           diachi: diachi,
           sodt: sodt,
           email: email,
@@ -78,12 +80,6 @@ export default function Userinfo() {
         // always executed
       });
   };
-  // data.map(item => {
-  //   settenshop(item.tenshop);
-  //   setdiachi(item.diachi);
-  //   setsodt(item.sodt);
-  //   setemail(item.email);
-  // });
 
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
@@ -91,7 +87,7 @@ export default function Userinfo() {
         style={{
           flex: 10,
         }}>
-        <Taskbar navigation={navigation} title="Signin" user="anhtu" />
+        <Taskbar navigation={navigation} title="Signin" />
       </View>
       <View
         style={{
@@ -137,7 +133,7 @@ export default function Userinfo() {
           <TouchableOpacity
             style={{marginLeft: 30}}
             onPress={() => {
-              navigation.navigate('Delivering');
+              navigation.navigate('MyOrder');
             }}>
             <Image
               source={images.order}
@@ -286,6 +282,7 @@ export default function Userinfo() {
       <View style={{flex: 10, alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity
           onPress={() => {
+            UpdateUser(iduser, tendn, diachi, sodt, email);
             alert(tendn + diachi + sodt + email);
           }}
           style={{

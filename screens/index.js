@@ -16,6 +16,10 @@ import DetailNews from './DetailNews';
 import UserInfo from './UserInfo';
 import Search from './Search';
 import TabBottomUser from './TabBottomUser';
+import MyDelivered from './MyDelivered';
+import MyDelivering from './MyDelivering';
+import MyOrder from './MyOrder';
+import MyCancelOrder from './MyCancelOrder';
 export {
   Signin,
   Register,
@@ -35,4 +39,8 @@ export {
   UserInfo,
   Search,
   TabBottomUser,
+  MyDelivered,
+  MyDelivering,
+  MyOrder,
+  MyCancelOrder,
 };
